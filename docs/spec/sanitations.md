@@ -1,6 +1,6 @@
 _Author_:  Thinuriw \
-_Created_: 14.02.2025 \
-_Updated_: 14.02.2025 \
+_Created_: 2025/02/14 \
+_Updated_: 2025/02/14 \
 _Edition_: Swan Lake
 
 # Sanitation for OpenAPI specification
