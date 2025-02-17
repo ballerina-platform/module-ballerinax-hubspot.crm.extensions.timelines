@@ -19,7 +19,7 @@
     "x-hubspot-introduction" : "Use the timeline events API to add custom event information to CRM record timelines. You'll first need to create a public app, then an event template to display event data. "
   },
   "servers" : [ {
-    "url" : "https://api.hubapi.com/integrators/timeline/v3" 
+    "url" : "https://api.hubapi.com/integrators/timeline/v3"
   } ],
   "tags" : [ {
     "name" : "Events"
@@ -68,7 +68,14 @@
             }
           },
           "default" : {
-            "$ref" : "#/components/responses/Error"
+            "description" : "An error occurred.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "security" : [ {
@@ -167,7 +174,14 @@
             }
           },
           "default" : {
-            "$ref" : "#/components/responses/Error"
+            "description" : "An error occurred.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "security" : [ {
@@ -285,7 +299,14 @@
             }
           },
           "default" : {
-            "$ref" : "#/components/responses/Error"
+            "description" : "An error occurred.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "security" : [ {
@@ -335,7 +356,14 @@
             "content" : { }
           },
           "default" : {
-            "$ref" : "#/components/responses/Error"
+            "description" : "An error occurred.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "security" : [ {
@@ -382,7 +410,14 @@
             }
           },
           "default" : {
-            "$ref" : "#/components/responses/Error"
+            "description" : "An error occurred.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "security" : [ {
@@ -531,7 +566,14 @@
             }
           },
           "default" : {
-            "$ref" : "#/components/responses/Error"
+            "description" : "An error occurred.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "security" : [ {
@@ -620,7 +662,14 @@
             }
           },
           "default" : {
-            "$ref" : "#/components/responses/Error"
+            "description" : "An error occurred.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "security" : [ {
@@ -761,7 +810,14 @@
             }
           },
           "default" : {
-            "$ref" : "#/components/responses/Error"
+            "description" : "An error occurred.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "security" : [ {
@@ -770,7 +826,7 @@
       },
       "post" : {
         "tags" : [ "Templates" ],
-        "summary" : "Create an event template for your app",
+        "summary" : "Create an event template for the app",
         "description" : "Event templates define the general structure for a custom timeline event. This includes formatted copy for its heading and details, as well as any custom property definitions. The event could be something like viewing a video, registering for a webinar, or filling out a survey. A single app can define multiple event templates.\n\nEvent templates will be created for contacts by default, but they can be created for companies, tickets, and deals as well.\n\nEach event template contains its own set of tokens and `Markdown` templates. These tokens can be associated with any CRM object properties via the `objectPropertyName` field to fully build out CRM objects.\n\nYou must create an event template before you can create events.",
         "operationId" : "post-/{appId}/event-templates_create",
         "parameters" : [ {
@@ -851,7 +907,14 @@
             }
           },
           "default" : {
-            "$ref" : "#/components/responses/Error"
+            "description" : "An error occurred.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "security" : [ {
@@ -945,7 +1008,14 @@
             }
           },
           "default" : {
-            "$ref" : "#/components/responses/Error"
+            "description" : "An error occurred.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "security" : [ {
@@ -1049,7 +1119,14 @@
             }
           },
           "default" : {
-            "$ref" : "#/components/responses/Error"
+            "description" : "An error occurred.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "security" : [ {
@@ -1089,7 +1166,14 @@
             "content" : { }
           },
           "default" : {
-            "$ref" : "#/components/responses/Error"
+            "description" : "An error occurred.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "security" : [ {
@@ -1162,7 +1246,14 @@
             }
           },
           "default" : {
-            "$ref" : "#/components/responses/Error"
+            "description" : "An error occurred.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "security" : [ {

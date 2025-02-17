@@ -174,6 +174,12 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
+    # Create an event template for your app
+    #
+    # + appId - The ID of the target app.
+    # + headers - Headers to be sent with the request 
+    # + payload - The updated event template definition. 
+    # + return - successful operation 
     resource isolated function post [int:Signed32 appId]/event\-templates(TimelineEventTemplateCreateRequest payload, map<string|string[]> headers = {}) returns TimelineEventTemplate|error {
         string resourcePath = string `/${getEncodedUri(appId)}/event-templates`;
         map<anydata> queryParam = {};
