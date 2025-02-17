@@ -12,10 +12,10 @@ These changes are done in order to improve the overall usability, and as workaro
 [//]: # (TODO: Add sanitation details)
 
 1. Change the url property of the servers object
-Original: https://api.hubspot.com
-Updated: https://api.hubapi.com/integrators/timeline/v3
 
-Reason: This change of adding the common prefix integrators/timeline/v3 to the base url makes it easier to access endpoints using the client.
+**Original**: `https://api.hubspot.com`
+**Updated**: `https://api.hubapi.com/integrators/timeline/v3`
+**Reason**: This change of adding the common prefix `integrators/timeline/v3` to the base url, makes it easier to access endpoints using the client.
 
 2. Update the API Paths
 Original: Paths included common prefix above in each endpoint. (eg: /integrators/timeline/v3)
