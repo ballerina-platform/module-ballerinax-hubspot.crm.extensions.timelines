@@ -18,18 +18,15 @@ These changes are done in order to improve the overall usability, and as workaro
 **Reason**: This change of adding the common prefix `integrators/timeline/v3` to the base url, makes it easier to access endpoints using the client.
 
 2. Update the API Paths
-Original: Paths included common prefix above in each endpoint. (eg: /integrators/timeline/v3)
-Updated: Common prefix is now removed from the endpoints as it is included in the base URL.
+**Original**: Paths included common prefix above in each endpoint. (eg: `/integrators/timeline/v3`)
+**Updated**: Common prefix is now removed from the endpoints as it is included in the base URL.
+**Reason**: This change simplifies the API paths, making them shorter and more readable.
 
-Original: /integrators/timeline/v3
-Updated: /
-Reason: This change simplifies the API paths, making them shorter and more readable.
+3. Update the `date-time` into datetime to make it compatible with the ballerina type conversions
 
-3. Update the date-time into datetime to make it compatible with the ballerina type conversions
-Original: foramt:date-time `
-
-Updated: foramt:datetime
-Reason: The date-time format is not compatible with the openAPI generation tool. Therefore, it is updated to datetime to make it compatible with the generation tool.
+**Original**: `format: date-time `
+**Updated**: `format: datetime`
+**Reason**: The `date-time` format is not compatible with the OpenAPI tool. Therefore, it is updated to `datetime` to make it compatible with the tool.
 
 ## OpenAPI cli command
 
