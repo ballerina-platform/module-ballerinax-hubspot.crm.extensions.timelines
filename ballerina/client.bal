@@ -95,6 +95,11 @@ public isolated client class Client {
         return self.clientEp->delete(resourcePath, headers = headers);
     }
 
+    #List all event templates for your app
+    # 
+    # + appId - The ID of the target app.
+    # + headers - Headers to be sent with the request 
+    # + return - successful operation 
     resource isolated function get [int:Signed32 appId]/event\-templates(map<string|string[]> headers = {}) returns CollectionResponseTimelineEventTemplateNoPaging|error {
         string resourcePath = string `/${getEncodedUri(appId)}/event-templates`;
         map<anydata> queryParam = {};
