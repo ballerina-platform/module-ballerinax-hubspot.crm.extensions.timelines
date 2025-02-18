@@ -95,7 +95,7 @@ public isolated client class Client {
         return self.clientEp->delete(resourcePath, headers = headers);
     }
 
-    #List all event templates for your app
+    # List all event templates for your app
     # 
     # + appId - The ID of the target app.
     # + headers - Headers to be sent with the request 
