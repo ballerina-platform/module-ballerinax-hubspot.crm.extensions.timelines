@@ -221,7 +221,6 @@ function testDeleteToken() returns error? {
     test:assertEquals(response.statusCode, 204, msg = "Expected status code to be 204");
 };
 
-
 @test:Config {
     groups: ["live_tests", "mock_tests"], dependsOn: [testPostEvents]
 }

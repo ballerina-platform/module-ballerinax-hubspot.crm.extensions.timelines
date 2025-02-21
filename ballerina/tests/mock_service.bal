@@ -5,7 +5,6 @@ import ballerina/http;
 
 service on new http:Listener(9090) {
 
-
     # Deletes an event template for the app
     #
     # + eventTemplateId - The event template ID.
@@ -17,10 +16,10 @@ service on new http:Listener(9090) {
         // Mock implementation for deleting an event template
         if appId == appId && eventTemplateId == globalEventTemplateId {
             return http:NO_CONTENT;
-        } else {    
+        } else {
             return error("Event template not found");
         }
-        
+
     }
 
     # Removes a token from the event template
@@ -40,44 +39,44 @@ service on new http:Listener(9090) {
         }
     }
 
-resource function get [int:Signed32 appId]/event\-templates() returns CollectionResponseTimelineEventTemplateNoPaging|error {
-    // Mock implementation for getting all event templates
-    if appId == appId {
-        CollectionResponseTimelineEventTemplateNoPaging response = {
-            results: [
-                {
-                    id: "2975858",  // Match the ID used in create template
-                    name: "PetSpot Registration",  // Match the name used in create template
-                    objectType: "contacts",
-                    tokens: [
-                        {
-                            name: "petName",
-                            'type: "string",
-                            label: "Pet Name"
-                        },
-                        {
-                            name: "petAge",
-                            'type: "number",
-                            label: "Pet Age"
-                        },
-                        {
-                            name: "petColor",
-                            'type: "enumeration",
-                            label: "Pet Color",
-                            options: [
-                                {label: "White", value: "white"},
-                                {label: "Black", value: "black"}
-                            ]
-                        }
-                    ],
-                    headerTemplate: "Registered for [{{petName}}](https://my.petspot.com/pets/{{petName}})"
-                }
-            ]
-        };
-        return response;
+    resource function get [int:Signed32 appId]/event\-templates() returns CollectionResponseTimelineEventTemplateNoPaging|error {
+        // Mock implementation for getting all event templates
+        if appId == appId {
+            CollectionResponseTimelineEventTemplateNoPaging response = {
+                results: [
+                    {
+                        id: "2975858", // Match the ID used in create template
+                        name: "PetSpot Registration", // Match the name used in create template
+                        objectType: "contacts",
+                        tokens: [
+                            {
+                                name: "petName",
+                                'type: "string",
+                                label: "Pet Name"
+                            },
+                            {
+                                name: "petAge",
+                                'type: "number",
+                                label: "Pet Age"
+                            },
+                            {
+                                name: "petColor",
+                                'type: "enumeration",
+                                label: "Pet Color",
+                                options: [
+                                    {label: "White", value: "white"},
+                                    {label: "Black", value: "black"}
+                                ]
+                            }
+                        ],
+                        headerTemplate: "Registered for [{{petName}}](https://my.petspot.com/pets/{{petName}})"
+                    }
+                ]
+            };
+            return response;
+        }
+        return error("App not found");
     }
-    return error("App not found");
-}
 
     # Gets a specific event template for your app
     #
@@ -159,6 +158,12 @@ resource function get [int:Signed32 appId]/event\-templates() returns Collection
         }
     }
 
+    # Create an event template for your app
+    #
+    # + appId - The ID of the target app.
+    # + headers - Headers to be sent with the request 
+    # + payload - The updated event template definition. 
+    # + return - successful operation 
     resource function post [int:Signed32 appId]/event\-templates(TimelineEventTemplateCreateRequest payload) returns TimelineEventTemplate|error {
         // Mock implementation for creating an event template
         TimelineEventTemplate response = {
