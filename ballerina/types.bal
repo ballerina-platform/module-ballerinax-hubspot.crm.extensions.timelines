@@ -210,7 +210,7 @@ public type TimelineEventTemplateToken record {
     # Used for list segmentation and reporting.
     string label;
     # The name of the CRM object property. This will populate the CRM object property associated with the event. With enough of these, you can fully build CRM objects via the Timeline API.
-    string objectPropertyName?;
+    string? objectPropertyName?;
     # The data type of the token. You can currently choose from [string, number, date, enumeration].
     "date"|"enumeration"|"number"|"string" 'type;
     # The date and time that the Event Template Token was last updated, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020.
@@ -221,7 +221,7 @@ public type TimelineEventTemplateToken record {
 public type TimelineEventResponse record {
     # The event template ID.
     string eventTemplateId;
-    string createdAt?;
+    string? createdAt?;
     # Additional event-specific data that can be interpreted by the template's markdown.
     record {} extraData?;
     TimelineEventIFrame timelineIFrame?;
@@ -256,8 +256,8 @@ public type TimelineEventTemplateTokenUpdateRequest record {
 # Provides API key configurations needed when communicating with a remote HTTP endpoint.
 public type ApiKeysConfig record {|
     string hapikey;
-    string private\-app\-legacy;
-    string private\-app;
+    string? private\-app\-legacy;
+    string? private\-app;
 |};
 
 # Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
