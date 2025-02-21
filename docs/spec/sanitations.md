@@ -28,6 +28,57 @@ These changes are done in order to improve the overall usability, and as workaro
 **Updated**: `format: datetime`
 **Reason**: The `date-time` format is not compatible with the OpenAPI tool. Therefore, it is updated to `datetime` to make it compatible with the tool.
 
+4. Make `"createdAt"` properties in `"TimelineEventTemplate"` object nullable
+
+**Original**:
+    "createdAt" : {
+            "type" : "string",
+            "description" : "The date and time that the Event Template was created, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020.",
+            "format" : "datetime"
+          },
+**Updated**:
+    "createdAt" : {
+            "type" : "string",
+            "description" : "The date and time that the Event Template was created, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020.",
+            "format" : "datetime",
+            "nullable" : true
+          },
+
+**Reason**: The properties `"createdAt"` is updated to be nullable, meaning it can either hold their respective values or be null, to fix payload binding error.
+
+5. Make `"createdAt"` properties in `"TimelineEventResponse"` object nullable
+
+**Original**:
+    "createdAt" : {
+            "type" : "string",
+            "format" : "datetime"
+          },
+**Updated**:
+    "createdAt" : {
+            "type" : "string",
+            "format" : "datetime",
+            "nullable": true
+          },
+
+**Reason**: The properties `"createdAt"` is updated to be nullable, meaning it can either hold their respective values or be null, to fix payload binding error.
+
+6. Make `"objectPropertyName"` properties in `"TimelineEventTemplateToken"` object nullable
+
+**Original**:
+    "objectPropertyName" : {
+            "type" : "string",
+            "description" : "The name of the CRM object property. This will populate the CRM object property associated with the event. With enough of these, you can fully build CRM objects via the Timeline API.",
+            "example" : "customPropertyPetType"
+    }
+**Updated**:
+    "objectPropertyName" : {
+            "type" : "string",
+            "description" : "The name of the CRM object property. This will populate the CRM object property associated with the event. With enough of these, you can fully build CRM objects via the Timeline API.",
+            "example" : "customPropertyPetType",
+            "nullable" : true
+    }
+**Reason**: The properties `"objectPropertyName"` is updated to be nullable, meaning it can either hold their respective values or be null, to fix payload binding error.
+
 ## OpenAPI cli command
 
 The following command was used to generate the Ballerina client from the OpenAPI specification. The command should be executed from the repository root directory.
