@@ -2041,7 +2041,9 @@
           "createdAt" : {
             "type" : "string",
             "description" : "The date and time that the Event Template was created, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020.",
-            "format" : "datetime"
+            "format" : "datetime",
+            "nullable" : true
+
           },
           "detailTemplate" : {
             "type" : "string",
@@ -2127,7 +2129,8 @@
           "objectPropertyName" : {
             "type" : "string",
             "description" : "The name of the CRM object property. This will populate the CRM object property associated with the event. With enough of these, you can fully build CRM objects via the Timeline API.",
-            "example" : "customPropertyPetType"
+            "example" : "customPropertyPetType",
+            "nullable" : true
           },
           "type" : {
             "type" : "string",
@@ -2167,10 +2170,12 @@
             "type" : "string",
             "description" : "The event template ID.",
             "example" : "1001298"
+
           },
           "createdAt" : {
             "type" : "string",
-            "format" : "datetime"
+            "format" : "datetime",
+            "nullable": true
           },
           "extraData" : {
             "type" : "object",
@@ -2421,6 +2426,7 @@
         "type" : "apiKey",
         "name" : "private-app",
         "in" : "header"
+
       }
     }
   },
