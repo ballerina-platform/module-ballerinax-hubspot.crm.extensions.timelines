@@ -34,7 +34,7 @@ These changes are done in order to improve the overall usability, and as workaro
 
 **Reason**: The `date-time` format is not compatible with the OpenAPI tool. Therefore, it is updated to `datetime` to make it compatible with the tool.
 
-4. Make `"createdAt"` properties in `"TimelineEventTemplate"` object nullable
+4. Update the `createdAt` property in `TimelineEventTemplate` to support nullable values
 
 **Original**:
     "createdAt" : {
