@@ -83,7 +83,7 @@ These changes are done in order to improve the overall usability, and as workaro
             "example" : "customPropertyPetType",
             "nullable" : true
     }
-**Reason**: The properties `"objectPropertyName"` is updated to be nullable, meaning it can either hold their respective values or be null, to fix payload binding error.
+**Reason**: The property `objectPropertyName` is updated to be nullable, meaning it can either hold their respective values or be null, to fix a payload binding error.
 
 ## OpenAPI cli command
 
