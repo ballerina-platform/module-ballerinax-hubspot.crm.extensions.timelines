@@ -52,7 +52,7 @@ These changes are done in order to improve the overall usability, and as workaro
 
 **Reason**: The properties `"createdAt"` is updated to be nullable, meaning it can either hold their respective values or be null, to fix payload binding error.
 
-5. Make `"createdAt"` properties in `"TimelineEventResponse"` object nullable
+5. Update the `createdAt` property in `TimelineEventResponse` to support nullable values
 
 **Original**:
     "createdAt" : {
