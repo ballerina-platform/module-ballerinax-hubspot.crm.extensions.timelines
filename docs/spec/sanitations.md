@@ -68,7 +68,7 @@ These changes are done in order to improve the overall usability, and as workaro
 
 **Reason**: The properties `"createdAt"` is updated to be nullable, meaning it can either hold their respective values or be null, to fix payload binding error.
 
-6. Make `"objectPropertyName"` properties in `"TimelineEventTemplateToken"` object nullable
+6. Update the `objectPropertyName` property in `TimelineEventTemplateToken` to support nullable values
 
 **Original**:
     "objectPropertyName" : {
