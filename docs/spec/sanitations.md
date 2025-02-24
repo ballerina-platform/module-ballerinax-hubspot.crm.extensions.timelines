@@ -42,7 +42,7 @@ These changes are done in order to improve the overall usability, and as workaro
             "type" : "string",
             "description" : "The date and time that the Event Template was created, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020.",
             "format" : "datetime"
-          },
+          }
 ```
 
 **Updated**:
@@ -53,7 +53,7 @@ These changes are done in order to improve the overall usability, and as workaro
             "description" : "The date and time that the Event Template was created, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020.",
             "format" : "datetime",
             "nullable" : true
-          },
+          }
 ```
 
 **Reason**: The properties `"createdAt"` is updated to be nullable, meaning it can either hold their respective values or be null, to fix payload binding error.
@@ -66,13 +66,17 @@ These changes are done in order to improve the overall usability, and as workaro
     "createdAt" : {
             "type" : "string",
             "format" : "datetime"
-          },
+          }
+```
+
 **Updated**:
+
+```json
     "createdAt" : {
             "type" : "string",
             "format" : "datetime",
             "nullable": true
-          },
+          }
 ```
 
 **Reason**: The properties `"createdAt"` is updated to be nullable, meaning it can either hold their respective values or be null, to fix payload binding error.
