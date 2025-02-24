@@ -25,19 +25,11 @@ These changes are done in order to improve the overall usability, and as workaro
 
 **Reason**: This change simplifies the API paths, making them shorter and more readable.
 
-3. Update the `date-time` into datetime to make it compatible with the ballerina type conversions
+3. Update the `date-time` into `datetime` to make it compatible with the ballerina type conversions
 
-**Original**:
+**Original**: `format: date-time`
 
-```json
-`format: date-time`
-```
-
-**Updated**:
-
-```json
-`format: datetime`
-```
+**Updated**: `format: datetime`
 
 **Reason**: The `date-time` format is not compatible with the OpenAPI tool. Therefore, it is updated to `datetime` to make it compatible with the tool.
 
@@ -46,22 +38,22 @@ These changes are done in order to improve the overall usability, and as workaro
 **Original**:
 
 ```json
-    "createdAt" : {
-            "type" : "string",
-            "description" : "The date and time that the Event Template was created, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020.",
-            "format" : "datetime"
-          }
+"createdAt" : {
+  "type" : "string",
+  "description" : "The date and time that the Event Template was created, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020.",
+  "format" : "datetime"
+}
 ```
 
 **Updated**:
 
 ```json
-    "createdAt" : {
-            "type" : "string",
-            "description" : "The date and time that the Event Template was created, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020.",
-            "format" : "datetime",
-            "nullable" : true
-          }
+"createdAt" : {
+  "type" : "string",
+  "description" : "The date and time that the Event Template was created, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020.",
+  "format" : "datetime",
+  "nullable" : true
+}
 ```
 
 **Reason**: The properties `"createdAt"` is updated to be nullable, meaning it can either hold their respective values or be null, to fix payload binding error.
@@ -71,20 +63,20 @@ These changes are done in order to improve the overall usability, and as workaro
 **Original**:
 
 ```json
-    "createdAt" : {
-            "type" : "string",
-            "format" : "datetime"
-          }
+"createdAt" : {
+  "type" : "string",
+  "format" : "datetime"
+}
 ```
 
 **Updated**:
 
 ```json
-    "createdAt" : {
-            "type" : "string",
-            "format" : "datetime",
-            "nullable": true
-          }
+"createdAt" : {
+  "type" : "string",
+  "format" : "datetime",
+  "nullable": true
+}
 ```
 
 **Reason**: The properties `"createdAt"` is updated to be nullable, meaning it can either hold their respective values or be null, to fix payload binding error.
@@ -94,22 +86,22 @@ These changes are done in order to improve the overall usability, and as workaro
 **Original**:
 
 ```json
-    "objectPropertyName" : {
-            "type" : "string",
-            "description" : "The name of the CRM object property. This will populate the CRM object property associated with the event. With enough of these, you can fully build CRM objects via the Timeline API.",
-            "example" : "customPropertyPetType"
-    }
+"objectPropertyName" : {
+  "type" : "string",
+  "description" : "The name of the CRM object property. This will populate the CRM object property associated with the event. With enough of these, you can fully build CRM objects via the Timeline API.",
+  "example" : "customPropertyPetType"
+}
 ```
 
 **Updated**:
 
 ```json
-    "objectPropertyName" : {
-            "type" : "string",
-            "description" : "The name of the CRM object property. This will populate the CRM object property associated with the event. With enough of these, you can fully build CRM objects via the Timeline API.",
-            "example" : "customPropertyPetType",
-            "nullable" : true
-    }
+"objectPropertyName" : {
+  "type" : "string",
+  "description" : "The name of the CRM object property. This will populate the CRM object property associated with the event. With enough of these, you can fully build CRM objects via the Timeline API.",
+  "example" : "customPropertyPetType",
+  "nullable" : true
+}
 ```
 
 **Reason**: The property `objectPropertyName` is updated to be nullable, meaning it can either hold their respective values or be null, to fix a payload binding error.
