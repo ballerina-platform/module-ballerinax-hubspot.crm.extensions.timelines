@@ -1,11 +1,11 @@
-_Author_:  Thinuriw \
+_Author_: @Thinuriw \
 _Created_: 2025/02/14 \
 _Updated_: 2025/02/14 \
 _Edition_: Swan Lake
 
 # Sanitation for OpenAPI specification
 
-This document records the sanitation done on top of the official OpenAPI specification from HubSpot CRM Timelines. 
+This document records the sanitation done on top of the official OpenAPI specification from HubSpot CRM Timelines.
 The OpenAPI specification is obtained from (TODO: Add source link).
 These changes are done in order to improve the overall usability, and as workarounds for some known language limitations.
 
@@ -27,9 +27,17 @@ These changes are done in order to improve the overall usability, and as workaro
 
 3. Update the `date-time` into datetime to make it compatible with the ballerina type conversions
 
-**Original**: `format: date-time`
+**Original**:
 
-**Updated**: `format: datetime`
+```json
+`format: date-time`
+```
+
+**Updated**:
+
+```json
+`format: datetime`
+```
 
 **Reason**: The `date-time` format is not compatible with the OpenAPI tool. Therefore, it is updated to `datetime` to make it compatible with the tool.
 
