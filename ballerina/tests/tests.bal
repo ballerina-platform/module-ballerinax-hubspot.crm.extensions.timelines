@@ -37,17 +37,14 @@ string globalEventId = "";
 string eventId = "";
 
 isolated function initApiKeyClient() returns Client|error {
-
     if hapikey == "" {
         return error("API Key is missing.");
     }
-
     ApiKeysConfig apiKeyConfig = {
         hapikey: hapikey,
         private\-app: "",
         private\-app\-legacy: ""
     };
-
     return check new ({auth: apiKeyConfig}, serviceUrl);
 };
 
@@ -60,14 +57,12 @@ isolated function initOAuth2Client() returns Client|error {
     if (clientId == "" || clientSecret == "" || refreshToken == "") {
         return error("OAuth2 credentials are not available");
     }
-
     OAuth2RefreshTokenGrantConfig oauthConfig = {
         clientId: clientId,
         clientSecret: clientSecret,
         refreshToken: refreshToken,
         credentialBearer: oauth2:POST_BODY_BEARER
     };
-
     return check new ({auth: oauthConfig}, serviceUrl);
 };
 
@@ -76,7 +71,6 @@ isolated function initOAuth2Client() returns Client|error {
     groups: ["live_tests", "mock_tests"]
 }
 function testCreateEventTemplate() returns error? {
-    
     TimelineEventTemplateCreateRequest payload = {
         detailTemplate: "Registration occurred at {{#formatDate timestamp}}{{/formatDate}}\n\n#### Questions\n{{#each extraData.questions}}\n  **{{question}}**: {{answer}}\n{{/each}}",
         name: "PetSpot Registration",
@@ -105,16 +99,13 @@ function testCreateEventTemplate() returns error? {
         ],
         headerTemplate: "Registered for [{{petName}}](https://my.petspot.com/pets/{{petName}})",
         objectType: "contacts"
-    };  
-    
+    };      
     TimelineEventTemplate response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates.post(payload);
     lock {
         globalEventTemplateId = response.id;
     }
-    runtime:sleep(60);
-    
-    test:assertEquals(response.name, payload.name, msg = "Expected event template name to match");
-    
+    runtime:sleep(60);    
+    test:assertEquals(response.name, payload.name, msg = "Expected event template name to match");    
 }
 
 @test:Config {  
@@ -122,9 +113,9 @@ function testCreateEventTemplate() returns error? {
     dependsOn: [testCreateEventTemplate]
 }
 function testUpdateEventTemplate() returns error? {
-
-    lock {  eventTemplateId = globalEventTemplateId; }
-
+    lock {  
+        eventTemplateId = globalEventTemplateId; 
+    }
     TimelineEventTemplateUpdateRequest payload ={
         detailTemplate: "Registration occurred at {{#formatDate timestamp}}{{/formatDate}}\n\n#### Questions\n{{#each extraData.questions}}\n  **{{question}}**: {{answer}}\n{{/each}}\n\nEDIT",
         name: "PetSpot Registration",
@@ -156,9 +147,7 @@ function testUpdateEventTemplate() returns error? {
     id: eventTemplateId,
     headerTemplate: "Registered for [{{petName}}](https://my.petspot.com/pets/{{petName}})"
     } ;
-
     TimelineEventTemplate response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates/[eventTemplateId].put(payload);
-
     test:assertEquals(response.name, payload.name, msg = "Expected event template name to match");
 };
 
@@ -167,17 +156,14 @@ function testUpdateEventTemplate() returns error? {
     groups: ["live_tests", "mock_tests"], dependsOn: [testUpdateEventTemplate]
 }
 function testGetAppEventTemplates() returns error? {
-
    CollectionResponseTimelineEventTemplateNoPaging response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates.get();
    test:assertEquals(response?.results[0].name, "PetSpot Registration", msg = "Expected event template name to match");
-
 };
 
 @test:Config {
     groups: ["live_tests", "mock_tests"], dependsOn: [testUpdateEventTemplate]
 }
 function testAddToken() returns error? {
-    
     TimelineEventTemplateToken payload = {
         name: "petType",
         label: "Pet Type",
@@ -188,18 +174,14 @@ function testAddToken() returns error? {
         ],
         objectPropertyName: "customPropertyPetType"
     };
-
     TimelineEventTemplateToken response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates/[eventTemplateId]/tokens.post(payload);
-
     test:assertEquals(response?.name, payload.name, msg = "Expected token name to match");
-   
 };
 
 @test:Config {
     groups: ["live_tests", "mock_tests"], dependsOn: [testAddToken]
 }
 function testUpdateToken() returns error? {
-
     string tokenName = "petType";
     TimelineEventTemplateTokenUpdateRequest payload = {
         label: "Pet Type Updated",        
@@ -209,9 +191,7 @@ function testUpdateToken() returns error? {
             {label: "Bird", value: "bird"}
         ]
     };
-
-    TimelineEventTemplateToken response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates/[eventTemplateId]/tokens/[tokenName].put(payload);
-    
+    TimelineEventTemplateToken response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates/[eventTemplateId]/tokens/[tokenName].put(payload); 
     test:assertEquals(response?.label, payload.label, msg = "Expected token label to match");
 };
 
@@ -219,11 +199,8 @@ function testUpdateToken() returns error? {
     groups: ["live_tests", "mock_tests"], dependsOn: [testUpdateToken]
 }
 function testDeleteToken() returns error? {
-
     string tokenName = "petType";
-
     http:Response response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates/[eventTemplateId]/tokens/[tokenName].delete();
-
     test:assertEquals(response.statusCode, 204, msg = "Expected status code to be 204");
 };
 
@@ -231,31 +208,23 @@ function testDeleteToken() returns error? {
     groups: ["live_tests", "mock_tests"], dependsOn: [testPostEvents]
 }
 function testGetEventTemplateAsRendered() returns error? {
-   
     EventDetail response = check hubSpotTimelineOAuth2->/events/[eventTemplateId]/[eventId]/detail.get();
-
     test:assertTrue(response?.details.length() > 0, msg = "Expected non-empty results for successful property group deletion");
-
 };
 
 @test:Config {
     groups: ["live_tests", "mock_tests"], dependsOn: [testGetEventTemplateAsRendered]
 }
 function testGetEventTimeline() returns error? {
-
     TimelineEventResponse response = check hubSpotTimelineOAuth2->/events/[eventTemplateId]/[eventId].get();
-
-    test:assertEquals(response?.eventTemplateId, eventTemplateId, msg = "Expected event template ID to match");
-    
+    test:assertEquals(response?.eventTemplateId, eventTemplateId, msg = "Expected event template ID to match");  
 };
 
 @test:Config {
     groups: ["live_tests", "mock_tests"], dependsOn:[testGetEventTimeline]
 }
 function testGetEventTimelineRender() returns error? {
-
     string response = check hubSpotTimelineOAuth2->/events/[eventTemplateId]/[eventId]/render.get();
-
     test:assertTrue(response.length() > 0, msg = "Expected non-empty rendered HTML");
 };
 
@@ -263,19 +232,14 @@ function testGetEventTimelineRender() returns error? {
     groups: ["live_tests", "mock_tests"], dependsOn: [testGetAppEventTemplates]
 }
 function testGetEventTemplate() returns error? {
-
     TimelineEventTemplate response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates/[eventTemplateId].get();
-
-    test:assertEquals(response?.id, eventTemplateId, msg = "Expected event template ID to match");
-    
+    test:assertEquals(response?.id, eventTemplateId, msg = "Expected event template ID to match");  
 };
 
 @test:Config {
     groups: ["live_tests", "mock_tests"], dependsOn: [testUpdateEventTemplate]
 }
-
 function testPostEvents() returns error? {
-
     TimelineEvent payload = {
         eventTemplateId: globalEventTemplateId,
         domain: "string",
@@ -308,7 +272,6 @@ function testPostEvents() returns error? {
             "petColor": "black"
         }
     };
-
     TimelineEventResponse response = check hubSpotTimelineOAuth2->/events.post(payload);
     lock {
         globalEventId = response.id;
@@ -318,17 +281,13 @@ function testPostEvents() returns error? {
         eventId = globalEventId;
     }   
     runtime:sleep(30);
-
     test:assertEquals(response.email, payload.email, msg = "Email should match");
-
 };
 
 @test:Config {
     groups: ["live_tests", "mock_tests"], dependsOn: [testUpdateToken]
 }
 function testDeleteEventTemplate() returns error? {
-
     http:Response response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates/[eventTemplateId].delete();
-
     test:assertEquals(response.statusCode, 204, msg = "Expected status code to be 204");
 };
