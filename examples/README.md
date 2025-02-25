@@ -3,8 +3,8 @@
 The `ballerinax/hubspot.crm.extensions.timelines` connector provides practical examples illustrating usage in various scenarios.
 
 [//]: # (TODO: Add examples)
-1. 
-2. 
+
+1. [Event Template Creation](https://github.com/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/create-event), covering the following use cases:
 
 ## Prerequisites
 
