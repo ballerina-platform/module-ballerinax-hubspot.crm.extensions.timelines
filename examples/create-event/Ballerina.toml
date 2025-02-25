@@ -4,11 +4,5 @@ name = "create_evenTemplates"
 version = "0.1.0"
 distribution = "2201.11.0"
 
-[[dependency]]
-org = "ballerinax"
-name = "hubspot.crm.extensions.timelines"
-version = "1.0.0"
-repository="local"
-
 [build-options]
 observabilityIncluded = true
