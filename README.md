@@ -117,7 +117,7 @@ Some APIs use a Developer API Key as a query parameter for authentication.
 
 1. In your developer account, navigate to Keys -> Developer API key. It will list down the active API key that you can copy.
 
- ![Hubspot get developerKey]( ![Hubspot get credentials](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/developer_key.png))
+![Hubspot get credentials](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/developer_key.png)
 
 2. Use the key by appending it to API requests as a query parameter:
 
