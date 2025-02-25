@@ -103,5 +103,4 @@ public function main() returns error? {
     };
     hstimeline:TimelineEventResponse eventResponse = check hubSpotTimelineOAuth2->/events.post(event);
     io:println("Event Created: ", eventResponse.id);
-    return ();   
 }
