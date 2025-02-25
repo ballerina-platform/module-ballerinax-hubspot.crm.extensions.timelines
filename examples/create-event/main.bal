@@ -16,14 +16,14 @@
 
 import ballerina/io;
 import ballerina/oauth2;
-import ballerinax/hubspot.crm.extensions.timelines as hstimeline ;
+import ballerinax/hubspot.crm.extensions.timelines as hstimeline;
 
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
-configurable int appId = ?;  
+configurable int appId = ?;
 configurable string hapikey = ?;
-final int:Signed32 appIdSigned32 = <int:Signed32> appId;
+final int:Signed32 appIdSigned32 = <int:Signed32>appId;
 
 hstimeline:OAuth2RefreshTokenGrantConfig accessToken = {
     clientId: clientId,
@@ -32,14 +32,15 @@ hstimeline:OAuth2RefreshTokenGrantConfig accessToken = {
     credentialBearer: oauth2:POST_BODY_BEARER
 };
 
-hstimeline:ApiKeysConfig apikeys =
-    { hapikey: hapikey,
-        private\-app: "",
-        private\-app\-legacy: "" };
+hstimeline:ApiKeysConfig apikeys = {
+    hapikey: hapikey,
+    private\-app: "",
+    private\-app\-legacy: ""
+};
 
 // Create a new HubSpot timelines client using the OAuth config.
-final hstimeline:Client hubSpotTimelineOAuth2 = check new({auth: accessToken});
-final hstimeline:Client hubSpotTimelineApiKey = check new ({auth:apikeys});
+final hstimeline:Client hubSpotTimelineOAuth2 = check new ({auth: accessToken});
+final hstimeline:Client hubSpotTimelineApiKey = check new ({auth: apikeys});
 
 public function main() returns error? {
     // Define a timeline event template
@@ -71,7 +72,7 @@ public function main() returns error? {
         ],
         headerTemplate: "Registered for [{{petName}}](https://my.petspot.com/pets/{{petName}})",
         objectType: "contacts"
-    };  
+    };
     // Create the template in HubSpot
     hstimeline:TimelineEventTemplate eventTimelineResponse = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates.post(eventTemplate);
     io:println("Event Template Created: ", eventTimelineResponse.id);
@@ -79,7 +80,7 @@ public function main() returns error? {
 
     //Get all event templates
     hstimeline:CollectionResponseTimelineEventTemplateNoPaging eventTemplatesResponse = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates.get();
-    io:println("Event Templates: ", eventTemplatesResponse); 
+    io:println("Event Templates: ", eventTemplatesResponse);
 
     // Create an Event
     hstimeline:TimelineEvent event = {
