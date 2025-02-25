@@ -4,11 +4,21 @@ The `ballerinax/hubspot.crm.extensions.timelines` connector provides practical e
 
 [//]: # (TODO: Add examples)
 
-1. [Event Template Creation](https://github.com/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/create-event), covering the following use cases:
+1. [Event Creation](https://github.com/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/create-event), covering the following use cases:
 
 ## Prerequisites
 
-[//]: # (TODO: Add prerequisites)
+1. Generate HubSpot credentials to authenticate the connector as described in the [Setup guide](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/blob/main/ballerina/Package.md#setup-guide).
+
+2. For each example, create a `Config.toml` file the related configuration. Here's an example of how your `Config.toml` file should look:
+
+    ```toml
+    clientId = <Client Id>
+    clientSecret = <Client Secret>
+    refreshToken = <Refresh Token>
+    hapikey = <Developer API Key>
+    appId = <App Id>
+    ```
 
 ## Running an example
 

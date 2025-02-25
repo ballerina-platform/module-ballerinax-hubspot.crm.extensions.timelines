@@ -14,7 +14,7 @@ The `ballerinax/module-ballerinax-hubspot.crm.extensions.timelines` connector of
 
 ## Setup guide
 
-To use the HubSpot Properties connector, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot App under it. Therefore, you need to register for a developer account at HubSpot if you don't have one already.
+To use the HubSpot CRM Timelines, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot App under it. Therefore, you need to register for a developer account at HubSpot if you don't have one already.
 
 ### Step 1: Create/Login to a HubSpot Developer Account
 
@@ -115,21 +115,21 @@ Some APIs require an Access Token for authentication. Follow these steps to obta
 
 Some APIs use a Developer API Key as a query parameter for authentication.
 
-1. In your developer account, navigate to Key -> Developer API key. It will list down the active API key that you can copy.
+1. In your developer account, navigate to Keys -> Developer API key. It will list down the active API key that you can copy.
 
  ![Hubspot get developerKey]( ![Hubspot get credentials](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/developer_key.png))
 
 2. Use the key by appending it to API requests as a query parameter:
 
 ```markdown
-https://api.hubapi.com/crm/v3/timeline/eventshapikey=<YOUR_DEVELOPER_API_KEY>
+https://api.hubapi.com/crm/v3/timeline/events?hapikey=<YOUR_DEVELOPER_API_KEY>
 ```
 
 No OAuth flow is required for this authentication method.
 
 ## Quickstart
 
-To use the `HubSpot Timelines connector` in your Ballerina application, update the `.bal` file as follows:
+To use the `HubSpot CRM Timelines` in your Ballerina application, update the `.bal` file as follows:
 
 ### Step 1: Import the module
 
@@ -143,13 +143,14 @@ import ballerina/oauth2;
 ### Step 2: Instantiate a new connector
 
 1. Instantiate a `hstimeline:OAuth2RefreshTokenGrantConfig` or `ApiKeysConfig` with the obtained credentials and initialize the connector with it.
-Since different APIs use varying authentication mechanisms, initialize two separate clients to handle both OAuth 2.0 and API key authentication.
+Since different APIs use varying authentication mechanisms, initialize two separate clients to handle both OAuth 2.0 and Developer API key authentication.
 
     ```ballerina
     configurable string clientId = ?;
     configurable string clientSecret = ?;
     configurable string refreshToken = ?;
     configurable string hapikey = ?;
+    configurable int appId = ?;
 
 
    hstimeline:OAuth2RefreshTokenGrantConfig accessToken = {
@@ -166,17 +167,19 @@ Since different APIs use varying authentication mechanisms, initialize two separ
    };
 
    final hstimeline:Client hubSpotTimelineOAuth2 = check new({auth: accessToken});
-   final hstimeline:Client hubSpotTimelineApiKey = check new ({auth:apikeys});
+   final hstimeline:Client hubSpotTimelineApiKey = check new ({auth: apikeys});
 
     ```
 
 2. Create a `Config.toml` file and, configure the obtained credentials in the above steps as follows:
 
    ```toml
-    clientId = <Client Id>
-    clientSecret = <Client Secret>
-    refreshToken = <Refresh Token>
-    hapikey = <Developer Key>
+   clientId = <Client Id>
+   clientSecret = <Client Secret>
+   refreshToken = <Refresh Token>
+   hapikey = <Developer API Key>
+   appId = <App Id>
+
    ```
 
 ### Step 3: Invoke the connector operation
@@ -187,9 +190,8 @@ Now, utilize the available connector operations. A sample use case is shown belo
 
 ```ballerina
 public function main() returns error? {
-    hstimeline:CollectionResponseTimelineEventTemplateNoPaging eventTemplatesResponse = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates.get();
-    io:println("Event Templates: ", eventTemplatesResponse); 
-
+    hstimeline:CollectionResponseTimelineEventTemplateNoPaging response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates.get();
+    io:println("Event Templates: ", response); 
 }
 ```
 
@@ -203,7 +205,7 @@ bal run
 
 The `HubSpot CRM Timelines` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/), covering the following use cases:
 
-1. [Event Template Creation](https://github.com/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/create-event), covering the following use cases:
+1. [Event Creation](https://github.com/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/create-event), covering the following use cases:
 
 ## Build from the source
 
