@@ -14,11 +14,11 @@ If you don't have a HubSpot Developer Account you can sign up to a free account 
 
 If you have an account already, go to the [HubSpot developer portal](https://app.hubspot.com/)
 
-### Step 2 : Create a Developer Test Account under your account (Optional)
+### Step 2 : Create a developer test account under your account (Optional)
 
 Within app developer accounts, you can create [developer test accounts](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) to test apps and integrations without affecting any real HubSpot data.
 
-**Note: These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts.**
+**Note: These accounts are only for development and testing purposes. In production you should not use developer test accounts.**
 
 1. Go to Test Account section from the left sidebar.
    ![Hubspot developer portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/test_acc_1.png)
@@ -29,14 +29,14 @@ Within app developer accounts, you can create [developer test accounts](https://
 3. In the dialogue box, give a name to your test account and click create.
    ![Hubspot developer testacc3](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/test_acc_3.png)
 
-### Step 3: Create a HubSpot App under your account
+### Step 3: Create a HubSpot app under your account
 
 1. In your developer account, navigate to the "Apps" section. Click on "Create App"
    ![Hubspot app creation 1](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/create_app_1.png)
 
 2. Provide the necessary details, including the app name and description.
 
-### Step 4: Configure the Authentication Flow
+### Step 4: Configure the authentication flow
 
 1. Move to the Auth Tab.
    ![Hubspot app creation 2](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/create_app_2.png)
@@ -47,16 +47,16 @@ Within app developer accounts, you can create [developer test accounts](https://
 3. Add your Redirect URI in the relevant section. You can also use localhost addresses for local development purposes. Click Create App.
    ![Hubspot create app final](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/create_app_final.png)
 
-### Step 5: Get your Client ID and Client Secret
+### Step 5: Get your client ID and client secret
 
 - Navigate to the Auth section of your app. Make sure to save the provided Client ID and Client Secret.
   ![Hubspot get credentials](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/get_credentials.png)
 
-### Step 6: Setup Authentication Flow
+### Step 6: Setup authentication flow
 
 Before proceeding with the Quickstart, ensure you have obtained the necessary authentication credentials.
 
-#### Method 1: OAuth 2.0 Authentication (Access Token)
+#### Method 1: OAuth 2.0 authentication (access token)
 
 Some APIs require an Access Token for authentication. Follow these steps to obtain one:
 
@@ -103,7 +103,7 @@ Some APIs require an Access Token for authentication. Follow these steps to obta
 
 5. Store the access token securely for use in your application.
 
-#### Method 2: Developer API Key Authentication
+#### Method 2: Developer API key authentication
 
 Some APIs use a Developer API Key as a query parameter for authentication.
 
