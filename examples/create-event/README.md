@@ -1,4 +1,4 @@
-# [Event Creation](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/)
+# Event Creation
 
 This example demonstrates how to create a timeline event template, retrieving existing events, and creating an event using the template with their details in a structured format.
 
