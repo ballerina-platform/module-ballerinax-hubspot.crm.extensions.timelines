@@ -33,7 +33,7 @@ hstimeline:OAuth2RefreshTokenGrantConfig accessToken = {
 };
 
 hstimeline:ApiKeysConfig apikeys = {
-    hapikey: hapikey,
+    hapikey,
     private\-app: "",
     private\-app\-legacy: ""
 };
