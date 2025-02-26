@@ -26,9 +26,9 @@ configurable string hapikey = ?;
 final int:Signed32 appIdSigned32 = <int:Signed32>appId;
 
 hstimeline:OAuth2RefreshTokenGrantConfig accessToken = {
-    clientId: clientId,
-    clientSecret: clientSecret,
-    refreshToken: refreshToken,
+    clientId,
+    clientSecret,
+    refreshToken,
     credentialBearer: oauth2:POST_BODY_BEARER
 };
 
