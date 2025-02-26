@@ -83,7 +83,7 @@ public function main() returns error? {
 
     // Create an Event
     hstimeline:TimelineEvent event = {
-        eventTemplateId: eventTemplateId,
+        eventTemplateId,
         domain: "string",
         id: "string",
         utk: "string",
