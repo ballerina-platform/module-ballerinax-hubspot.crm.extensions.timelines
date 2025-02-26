@@ -6,11 +6,11 @@ The `ballerinax/module-ballerinax-hubspot.crm.extensions.timelines` connector of
 
 ## Setup guide
 
-To use the HubSpot Properties connector, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot App under it. Therefore, you need to register for a developer account at HubSpot if you don't have one already.
+To use the HubSpot CRM Timelines, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot app under it. Therefore, you need to register for a developer account at HubSpot if you don't have one already.
 
-## Quickstart
+### Step 1: Create/login to a HubSpot developer account
 
-If you don't have a HubSpot Developer Account you can sign up to a free account [here](https://developers.hubspot.com/get-started)
+If you don't have a HubSpot Developer account you can sign up to a free account [here](https://developers.hubspot.com/get-started)
 
 If you have an account already, go to the [HubSpot developer portal](https://app.hubspot.com/)
 
@@ -18,12 +18,12 @@ If you have an account already, go to the [HubSpot developer portal](https://app
 
 Within app developer accounts, you can create [developer test accounts](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) to test apps and integrations without affecting any real HubSpot data.
 
-**Note: These accounts are only for development and testing purposes. In production you should not use developer test accounts.**
+**Note: These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts.**
 
-1. Go to Test Account section from the left sidebar.
+1. Go to test account section from the left sidebar.
    ![Hubspot developer portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/test_acc_1.png)
 
-2. Click Create developer test account.
+2. Click create developer test account.
    ![Hubspot developer testacc](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/test_acc_2.png)
 
 3. In the dialogue box, give a name to your test account and click create.
@@ -44,21 +44,21 @@ Within app developer accounts, you can create [developer test accounts](https://
 2. In the Scopes section, add necessary scopes for your app using the "Add new scope" button.
    ![Hubspot set scope](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/set_scope.png)
 
-3. Add your Redirect URI in the relevant section. You can also use localhost addresses for local development purposes. Click Create App.
+3. Add your Redirect URI in the relevant section. You can also use localhost addresses for local development purposes. Click create app.
    ![Hubspot create app final](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/create_app_final.png)
 
-### Step 5: Get your client ID and client secret
+### Step 5: Get your client ID and client Secret
 
-- Navigate to the Auth section of your app. Make sure to save the provided Client ID and Client Secret.
+- Navigate to the auth section of your app. Make sure to save the provided client ID and client Secret.
   ![Hubspot get credentials](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/get_credentials.png)
 
 ### Step 6: Setup authentication flow
 
-Before proceeding with the Quickstart, ensure you have obtained the necessary authentication credentials.
+Before proceeding with the quickstart, ensure you have obtained the necessary authentication credentials.
 
 #### Method 1: OAuth 2.0 authentication (access token)
 
-Some APIs require an Access Token for authentication. Follow these steps to obtain one:
+Some APIs require an access token for authentication. Follow these steps to obtain one:
 
 1. Create an authorization URL using the following format:
 
@@ -105,98 +105,96 @@ Some APIs require an Access Token for authentication. Follow these steps to obta
 
 #### Method 2: Developer API key authentication
 
-Some APIs use a Developer API Key as a query parameter for authentication.
+Some APIs use a developer API key as a query parameter for authentication.
 
-1. In your developer account, navigate to Key -> Developer API key. It will list down the active API key that you can copy.
+1. In your developer account, navigate to Keys -> Developer API key. It will list down the active API key that you can copy.
 
- ![Hubspot get developerKey]( ![Hubspot get credentials](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/developer-key.png))
+![Hubspot get credentials](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/developer_key.png)
 
 2. Use the key by appending it to API requests as a query parameter:
 
 ```markdown
-https://api.hubapi.com/crm/v3/timeline/eventshapikey=<YOUR_DEVELOPER_API_KEY>
+https://api.hubapi.com/crm/v3/timeline/events?hapikey=<YOUR_DEVELOPER_API_KEY>
 ```
 
 No OAuth flow is required for this authentication method.
 
+## Quickstart
+
+To use the `HubSpot CRM Timelines` in your Ballerina application, update the `.bal` file as follows:
+
+### Step 1: Import the module
+
+Import the `hubspot.crm.extensions.timelines` module and `oauth2` module.
+
+```ballerina
+import ballerinax/hubspot.crm.extensions.timelines as hstimeline;
+import ballerina/oauth2;
+```
+
+### Step 2: Instantiate a new connector
+
+1. Instantiate a `hstimeline:OAuth2RefreshTokenGrantConfig` or `ApiKeysConfig` with the obtained credentials and initialize the connector with it.
+Since different APIs use varying authentication mechanisms, initialize two separate clients to handle both OAuth 2.0 and Developer API key authentication.
+
+    ```ballerina
+    configurable string clientId = ?;
+    configurable string clientSecret = ?;
+    configurable string refreshToken = ?;
+    configurable string hapikey = ?;
+    configurable int appId = ?;
+
+
+   hstimeline:OAuth2RefreshTokenGrantConfig accessToken = {
+      clientId: clientId,
+      clientSecret: clientSecret,
+      refreshToken: refreshToken,
+      credentialBearer: oauth2:POST_BODY_BEARER
+   };
+
+   hstimeline:ApiKeysConfig apikeys ={
+      hapikey: hapikey,
+      private\-app: "",
+      private\-app\-legacy: "" 
+   };
+
+   final hstimeline:Client hubSpotTimelineOAuth2 = check new({auth: accessToken});
+   final hstimeline:Client hubSpotTimelineApiKey = check new ({auth: apikeys});
+
+    ```
+
+2. Create a `Config.toml` file and, configure the obtained credentials in the above steps as follows:
+
+   ```toml
+   clientId = <Client Id>
+   clientSecret = <Client Secret>
+   refreshToken = <Refresh Token>
+   hapikey = <Developer API Key>
+   appId = <App Id>
+
+   ```
+
+### Step 3: Invoke the connector operation
+
+Now, utilize the available connector operations. A sample use case is shown below.
+
+#### Get all event templates
+
+```ballerina
+public function main() returns error? {
+    hstimeline:CollectionResponseTimelineEventTemplateNoPaging response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates.get();
+    io:println("Event Templates: ", response); 
+}
+```
+
+#### Run the Ballerina application
+
+```bash
+bal run
+```
+
 ## Examples
 
-The `HubSpot CRM Timelines` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/), covering the following use cases:
+The `HubSpot CRM Timelines` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/), covering the following use cases:
 
-1. [Event Template Creation](https://github.com/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/create-event), covering the following use cases:
-
-## Build from the source
-
-### Setting up the prerequisites
-
-1. Download and install Java SE Development Kit (JDK) version 21. You can download it from either of the following sources:
-
-    - [Oracle JDK](https://www.oracle.com/java/technologies/downloads/)
-    - [OpenJDK](https://adoptium.net/)
-
-   > **Note:** After installation, remember to set the `JAVA_HOME` environment variable to the directory where JDK was installed.
-
-2. Download and install [Ballerina Swan Lake](https://ballerina.io/).
-
-3. Download and install [Docker](https://www.docker.com/get-started).
-
-   > **Note**: Ensure that the Docker daemon is running before executing any tests.
-
-4. Export Github Personal access token with read package permissions as follows,
-
-    ```bash
-    export packageUser=<Username>
-    export packagePAT=<Personal access token>
-    ```
-
-### Build options
-
-Execute the commands below to build from the source.
-
-1. To build the package:
-
-   ```bash
-   ./gradlew clean build
-   ```
-
-2. To run the tests:
-
-   ```bash
-   ./gradlew clean test
-   ```
-
-3. To build the without the tests:
-
-   ```bash
-   ./gradlew clean build -x test
-   ```
-
-4. To run tests against different environments:
-
-   ```bash
-   ./gradlew clean test -Pgroups=<Comma separated groups/test cases>
-   ```
-
-5. To debug the package with a remote debugger:
-
-   ```bash
-   ./gradlew clean build -Pdebug=<port>
-   ```
-
-6. To debug with the Ballerina language:
-
-   ```bash
-   ./gradlew clean build -PbalJavaDebug=<port>
-   ```
-
-7. Publish the generated artifacts to the local Ballerina Central repository:
-
-    ```bash
-    ./gradlew clean build -PpublishToLocalCentral=true
-    ```
-
-8. Publish the generated artifacts to the Ballerina Central repository:
-
-   ```bash
-   ./gradlew clean build -PpublishToCentral=true
-   ```
+1. [Event Creation](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/create-event), creating a timeline event template, retrieving existing events, and creating an event with their details
