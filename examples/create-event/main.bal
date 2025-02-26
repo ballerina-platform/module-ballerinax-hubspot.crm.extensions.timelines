@@ -23,7 +23,7 @@ configurable string clientSecret = ?;
 configurable string refreshToken = ?;
 configurable int appId = ?;
 configurable string hapikey = ?;
-final int:Signed32 appIdSigned32 = <int:Signed32>appId;
+final int:Signed32 appIdSigned32 = check appId.ensureType();
 
 hstimeline:OAuth2RefreshTokenGrantConfig accessToken = {
     clientId,
