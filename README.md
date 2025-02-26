@@ -26,7 +26,7 @@ If you have an account already, go to the [HubSpot developer portal](https://app
 
 Within app developer accounts, you can create [developer test accounts](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) to test apps and integrations without affecting any real HubSpot data.
 
-**Note: These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts.**
+**Note: These accounts are only for development and testing purposes. In production you should not use developer test accounts.**
 
 1. Go to test account section from the left sidebar.
    ![Hubspot developer portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/test_acc_1.png)
@@ -46,13 +46,13 @@ Within app developer accounts, you can create [developer test accounts](https://
 
 ### Step 4: Configure the authentication flow
 
-1. Move to the Auth Tab.
+1. Move to the "Auth" Tab.
    ![Hubspot app creation 2](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/create_app_2.png)
 
-2. In the Scopes section, add necessary scopes for your app using the "Add new scope" button.
+2. In the "Scopes" section, add necessary scopes for your app using the "Add new scope" button.
    ![Hubspot set scope](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/set_scope.png)
 
-3. Add your Redirect URI in the relevant section. You can also use localhost addresses for local development purposes. Click create app.
+3. Add your redirect URI in the relevant section. You can also use localhost addresses for local development purposes. Click create app.
    ![Hubspot create app final](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/create_app_final.png)
 
 ### Step 5: Get your client ID and client Secret
@@ -143,7 +143,7 @@ import ballerina/oauth2;
 ### Step 2: Instantiate a new connector
 
 1. Instantiate a `hstimeline:OAuth2RefreshTokenGrantConfig` or `ApiKeysConfig` with the obtained credentials and initialize the connector with it.
-Since different APIs use varying authentication mechanisms, initialize two separate clients to handle both OAuth 2.0 and Developer API key authentication.
+Since different APIs use varying authentication mechanisms, initialize two separate clients to handle both OAuth 2.0 and developer API key authentication.
 
     ```ballerina
     configurable string clientId = ?;
@@ -205,7 +205,7 @@ bal run
 
 The `HubSpot CRM Timelines` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/), covering the following use cases:
 
-1. [Event Creation](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/create-event), creating a timeline event template, retrieving existing events, and creating an event with their details
+1. [Event Creation](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/create-event): This example demonstrates how to create a timeline event template, retrieving existing events, and creating an event using the template with their details in a structured format.
 
 ## Build from the source
 

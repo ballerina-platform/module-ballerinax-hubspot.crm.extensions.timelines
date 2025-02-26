@@ -38,7 +38,6 @@ hstimeline:ApiKeysConfig apikeys = {
     private\-app\-legacy: ""
 };
 
-// Create a new HubSpot timelines client using the OAuth config.
 final hstimeline:Client hubSpotTimelineOAuth2 = check new ({auth: accessToken});
 final hstimeline:Client hubSpotTimelineApiKey = check new ({auth: apikeys});
 
@@ -49,7 +48,7 @@ public function main() returns error? {
         name: "PetSpot Registration",
         tokens: [
             {
-                name: "petName",
+                name: "petName",    
                 'type: "string",
                 label: "Pet Name"
             },
