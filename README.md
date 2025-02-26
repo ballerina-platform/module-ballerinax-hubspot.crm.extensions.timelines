@@ -14,7 +14,7 @@ The `ballerinax/module-ballerinax-hubspot.crm.extensions.timelines` connector of
 
 ## Setup guide
 
-To use the HubSpot CRM Timelines, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot app under it. Therefore, you need to register for a developer account at HubSpot if you don't have one already.
+To use the HubSpot CRM Timelines API, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot app under it. Therefore, you need to register for a developer account at HubSpot if you don't have one already.
 
 ### Step 1: Create/login to a HubSpot developer account
 
