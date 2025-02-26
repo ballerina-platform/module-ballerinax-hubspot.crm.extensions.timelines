@@ -17,6 +17,7 @@
 import ballerina/io;
 import ballerina/oauth2;
 import ballerinax/hubspot.crm.extensions.timelines as hstimeline;
+import ballerina/lang.runtime;
 
 configurable string clientId = ?;
 configurable string clientSecret = ?;
@@ -76,6 +77,8 @@ public function main() returns error? {
     hstimeline:TimelineEventTemplate eventTimelineResponse = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates.post(eventTemplate);
     io:println("Event Template Created: ", eventTimelineResponse.id);
     string eventTemplateId = eventTimelineResponse.id;
+
+    runtime:sleep(60); // Pause execution for 60 seconds to allow template creation.
 
     //Get all event templates
     hstimeline:CollectionResponseTimelineEventTemplateNoPaging eventTemplatesResponse = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates.get();
