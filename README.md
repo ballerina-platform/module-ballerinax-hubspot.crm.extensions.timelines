@@ -57,7 +57,7 @@ Within app developer accounts, you can create [developer test accounts](https://
 
 ### Step 5: Get your client ID and client Secret
 
-- Navigate to the auth section of your app. Make sure to save the provided client ID and client Secret.
+Navigate to the auth section of your app. Make sure to save the provided client ID and client Secret.
   ![Hubspot get credentials](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/get_credentials.png)
 
 ### Step 6: Setup authentication flow
