@@ -160,7 +160,7 @@ Since different APIs use varying authentication mechanisms, initialize two separ
       credentialBearer: oauth2:POST_BODY_BEARER
    };
 
-   hstimeline:ApiKeysConfig apikeys ={
+   hstimeline:ApiKeysConfig apikeys = {
       hapikey,
       private\-app: "",
       private\-app\-legacy: "" 
