@@ -49,7 +49,6 @@ isolated function initApiKeyClient() returns Client|error {
 };
 
 isolated function initOAuth2Client() returns Client|error {
-    
     if (clientId == "" || clientSecret == "" || refreshToken == "") {
         return error("OAuth2 credentials are not available");
     }
@@ -100,7 +99,7 @@ function testCreateEventTemplate() returns error? {
     lock {
         globalEventTemplateId = response.id;
     }
-    runtime:sleep(delay);   // Pause execution for set delay to allow template creation. 
+    runtime:sleep(delay);   // Pause execution for the set delay to allow template creation. 
     test:assertEquals(response.name, payload.name, msg = "Expected event template name to match");    
 }
 
@@ -276,7 +275,7 @@ function testPostEvents() returns error? {
     lock {  
         eventId = globalEventId;
     }   
-    runtime:sleep(delay);
+    runtime:sleep(delay); // Pause execution for the set delay to allow event creation.
     test:assertEquals(response.email, payload.email, msg = "Email should match");
 };
 
