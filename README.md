@@ -26,7 +26,7 @@ If you have an account already, go to the [HubSpot developer portal](https://app
 
 Within app developer accounts, you can create [developer test accounts](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) to test apps and integrations without affecting any real HubSpot data.
 
-**Note: These accounts are only for development and testing purposes. In production you should not use developer test accounts.**
+> **Note:** These accounts are only for development and testing purposes. In production you should not use developer test accounts.
 
 1. Go to test account section from the left sidebar.
    ![Hubspot developer portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/test_acc_1.png)
