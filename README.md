@@ -161,7 +161,7 @@ Since different APIs use varying authentication mechanisms, initialize two separ
    };
 
    hstimeline:ApiKeysConfig apikeys ={
-      hapikey: hapikey,
+      hapikey,
       private\-app: "",
       private\-app\-legacy: "" 
    };
