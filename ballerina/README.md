@@ -10,15 +10,15 @@ To use the HubSpot CRM Timelines API, you must have access to the HubSpot API th
 
 ### Step 1: Create/login to a HubSpot developer account
 
-If you don't have a HubSpot Developer account you can sign up to a free account [here](https://developers.hubspot.com/get-started)
+If you don't have a HubSpot developer account you can sign up to a free account [here](https://developers.hubspot.com/get-started).
 
 If you have an account already, go to the [HubSpot developer portal](https://app.hubspot.com/)
 
-### Step 2 : Create a developer test account
+### Step 2: Create a developer test account (Optional)
 
 Within app developer accounts, you can create [developer test accounts](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) to test apps and integrations without affecting any real HubSpot data.
 
-**Note: These accounts are only for development and testing purposes. In production you should not use developer test accounts.**
+> **Note:** These accounts are only for development and testing purposes. In production you should not use developer test accounts.
 
 1. Go to test account section from the left sidebar.
    ![Hubspot developer portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/test_acc_1.png)
@@ -38,7 +38,7 @@ Within app developer accounts, you can create [developer test accounts](https://
 
 ### Step 4: Configure the authentication flow
 
-1. Move to the Auth Tab.
+1. Move to the "Auth" Tab.
    ![Hubspot app creation 2](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/main/docs/resources/create_app_2.png)
 
 2. In the "Scopes" section, add necessary scopes for your app using the "Add new scope" button.
@@ -113,7 +113,7 @@ Some APIs use a developer API key as a query parameter for authentication.
 
 2. Use the key by appending it to API requests as a query parameter:
 
-```markdown
+```text
 https://api.hubapi.com/crm/v3/timeline/events?hapikey=<YOUR_DEVELOPER_API_KEY>
 ```
 
@@ -128,8 +128,8 @@ To use the `HubSpot CRM Timelines` in your Ballerina application, update the `.b
 Import the `hubspot.crm.extensions.timelines` module and `oauth2` module.
 
 ```ballerina
-import ballerinax/hubspot.crm.extensions.timelines as hstimeline;
 import ballerina/oauth2;
+import ballerinax/hubspot.crm.extensions.timelines as hstimeline;
 ```
 
 ### Step 2: Instantiate a new connector
@@ -146,14 +146,14 @@ Since different APIs use varying authentication mechanisms, initialize two separ
 
 
    hstimeline:OAuth2RefreshTokenGrantConfig accessToken = {
-      clientId: clientId,
-      clientSecret: clientSecret,
-      refreshToken: refreshToken,
+      clientId,
+      clientSecret,
+      refreshToken,
       credentialBearer: oauth2:POST_BODY_BEARER
    };
 
-   hstimeline:ApiKeysConfig apikeys ={
-      hapikey: hapikey,
+   hstimeline:ApiKeysConfig apikeys = {
+      hapikey,
       private\-app: "",
       private\-app\-legacy: "" 
    };

@@ -18,7 +18,7 @@ To use the HubSpot CRM Timelines API, you must have access to the HubSpot API th
 
 ### Step 1: Create/login to a HubSpot developer account
 
-If you don't have a HubSpot Developer account you can sign up to a free account [here](https://developers.hubspot.com/get-started)
+If you don't have a HubSpot developer account you can sign up to a free account [here](https://developers.hubspot.com/get-started).
 
 If you have an account already, go to the [HubSpot developer portal](https://app.hubspot.com/)
 
