@@ -154,9 +154,9 @@ Since different APIs use varying authentication mechanisms, initialize two separ
 
 
    hstimeline:OAuth2RefreshTokenGrantConfig accessToken = {
-      clientId: clientId,
-      clientSecret: clientSecret,
-      refreshToken: refreshToken,
+      clientId,
+      clientSecret,
+      refreshToken,
       credentialBearer: oauth2:POST_BODY_BEARER
    };
 
