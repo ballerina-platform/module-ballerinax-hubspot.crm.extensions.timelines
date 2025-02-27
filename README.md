@@ -121,7 +121,7 @@ Some APIs use a developer API key as a query parameter for authentication.
 
 2. Use the key by appending it to API requests as a query parameter:
 
-```markdown
+```text
 https://api.hubapi.com/crm/v3/timeline/events?hapikey=<YOUR_DEVELOPER_API_KEY>
 ```
 
