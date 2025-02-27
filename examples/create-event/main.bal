@@ -15,9 +15,9 @@
 // under the License.
 
 import ballerina/io;
+import ballerina/lang.runtime;
 import ballerina/oauth2;
 import ballerinax/hubspot.crm.extensions.timelines as hstimeline;
-import ballerina/lang.runtime;
 
 configurable string clientId = ?;
 configurable string clientSecret = ?;
@@ -49,7 +49,7 @@ public function main() returns error? {
         name: "PetSpot Registration",
         tokens: [
             {
-                name: "petName",    
+                name: "petName",
                 'type: "string",
                 label: "Pet Name"
             },
