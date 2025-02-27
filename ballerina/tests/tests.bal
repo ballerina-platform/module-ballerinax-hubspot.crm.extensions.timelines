@@ -15,18 +15,18 @@
 // under the License.
 
 import ballerina/oauth2;
-import ballerina/os;
 import ballerina/test;
 import ballerina/http;
 import ballerina/lang.runtime;
 
 final string serviceUrl = isLiveServer? "https://api.hubapi.com/integrators/timeline/v3": "http://localhost:9090";
-configurable string clientId = ?;
-configurable string clientSecret = ?;
-configurable string refreshToken = ?;
-configurable int appId = ?;  
-configurable string hapikey = ?;
-configurable boolean isLiveServer = ?;
+configurable string clientId = "clientId";
+configurable string clientSecret = "clientSecret";
+configurable string refreshToken = "refreshToken";
+configurable int appId = 12345;  
+configurable string hapikey = "hapikey";
+configurable boolean isLiveServer = false;
+configurable decimal delay = 45.0;
 final int:Signed32 appIdSigned32 = <int:Signed32> appId;
 
 final Client hubSpotTimelineApiKey = check initApiKeyClient();
@@ -49,11 +49,7 @@ isolated function initApiKeyClient() returns Client|error {
 };
 
 isolated function initOAuth2Client() returns Client|error {
-    final string clientId = os:getEnv("HUBSPOT_CLIENT_ID");
-    final string clientSecret = os:getEnv("HUBSPOT_CLIENT_SECRET");
-    final string refreshToken = os:getEnv("HUBSPOT_REFRESH_TOKEN");
-
-    // Check if all OAuth2 credentials are available
+    
     if (clientId == "" || clientSecret == "" || refreshToken == "") {
         return error("OAuth2 credentials are not available");
     }
@@ -104,7 +100,7 @@ function testCreateEventTemplate() returns error? {
     lock {
         globalEventTemplateId = response.id;
     }
-    runtime:sleep(60);    
+    runtime:sleep(delay);   // Pause execution for set delay to allow template creation. 
     test:assertEquals(response.name, payload.name, msg = "Expected event template name to match");    
 }
 
@@ -280,7 +276,7 @@ function testPostEvents() returns error? {
     lock {  
         eventId = globalEventId;
     }   
-    runtime:sleep(30);
+    runtime:sleep(delay);
     test:assertEquals(response.email, payload.email, msg = "Email should match");
 };
 
