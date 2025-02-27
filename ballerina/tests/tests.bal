@@ -26,7 +26,7 @@ configurable string refreshToken = "refreshToken";
 configurable int appId = 12345;  
 configurable string hapikey = "hapikey";
 configurable boolean isLiveServer = false;
-configurable decimal delay = 45.0;
+configurable decimal delay = 0.0;
 final int:Signed32 appIdSigned32 = <int:Signed32> appId;
 
 final Client hubSpotTimelineApiKey = check initApiKeyClient();
@@ -37,6 +37,7 @@ string globalEventId = "";
 string eventId = "";
 
 isolated function initApiKeyClient() returns Client|error {
+    if isLiveServer{
     if hapikey == "" {
         return error("API Key is missing.");
     }
@@ -46,20 +47,34 @@ isolated function initApiKeyClient() returns Client|error {
         private\-app\-legacy: ""
     };
     return check new ({auth: apiKeyConfig}, serviceUrl);
+    } 
+    return check new ({
+        auth: {
+            hapikey: "abc-def-ghi",
+            private\-app: "",
+            private\-app\-legacy: ""
+        }
+    }, serviceUrl);
 };
 
 isolated function initOAuth2Client() returns Client|error {
-    
-    if (clientId == "" || clientSecret == "" || refreshToken == "") {
-        return error("OAuth2 credentials are not available");
-    }
-    OAuth2RefreshTokenGrantConfig oauthConfig = {
-        clientId: clientId,
-        clientSecret: clientSecret,
-        refreshToken: refreshToken,
-        credentialBearer: oauth2:POST_BODY_BEARER
-    };
+    if isLiveServer {
+        if (clientId == "" || clientSecret == "" || refreshToken == "") {
+            return error("OAuth2 credentials are not available");
+        }
+        OAuth2RefreshTokenGrantConfig oauthConfig = {
+            clientId: clientId,
+            clientSecret: clientSecret,
+            refreshToken: refreshToken,
+            credentialBearer: oauth2:POST_BODY_BEARER
+        };
     return check new ({auth: oauthConfig}, serviceUrl);
+    }
+    return check new ({
+        auth: {
+            token: "test-token"
+        }
+    }, serviceUrl);
 };
 
 
@@ -100,7 +115,7 @@ function testCreateEventTemplate() returns error? {
     lock {
         globalEventTemplateId = response.id;
     }
-    runtime:sleep(delay);   // Pause execution for set delay to allow template creation. 
+    runtime:sleep(delay);   // Pause execution for the set delay to allow template creation. 
     test:assertEquals(response.name, payload.name, msg = "Expected event template name to match");    
 }
 
@@ -276,7 +291,7 @@ function testPostEvents() returns error? {
     lock {  
         eventId = globalEventId;
     }   
-    runtime:sleep(delay);
+    runtime:sleep(delay); // Pause execution for the set delay to allow event creation.
     test:assertEquals(response.email, payload.email, msg = "Email should match");
 };
 

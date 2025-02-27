@@ -44,7 +44,6 @@ service on new http:Listener(9090) {
     # http:NoContent (No content)
     # http:DefaultStatusCodeResponse (An error occurred.)
     resource function delete [int:Signed32 appId]/event\-templates/[string eventTemplateId]/tokens/[string tokenName]() returns http:NoContent|error {
-
         if appId == appId && eventTemplateId == globalEventTemplateId && tokenName == "petType" {
             return http:NO_CONTENT;
         } else {
@@ -100,7 +99,7 @@ service on new http:Listener(9090) {
     # http:DefaultStatusCodeResponse (An error occurred.)
     resource function get [int:Signed32 appId]/event\-templates/[string eventTemplateId]() returns TimelineEventTemplate|error {
         // Mock implementation for getting a specific event template
-        if appId == 8110991 && eventTemplateId == globalEventTemplateId {
+        if appId == appId && eventTemplateId == globalEventTemplateId {
             TimelineEventTemplate response = {
                 id: "2975858",
                 name: "Test Template",
