@@ -1,5 +1,5 @@
 [package]
-org = "thinuri"
+org = "wso2"
 name = "create_evenTemplates"
 version = "0.1.0"
 distribution = "2201.11.0"
