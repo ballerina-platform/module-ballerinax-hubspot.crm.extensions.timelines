@@ -1,8 +1,6 @@
-# Examples
+# Event Creation
 
-The `HubSpot CRM Timelines` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/), covering the following use cases:
-
-1. [Event Creation](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines/tree/main/examples/create-event): This example demonstrates how to create a timeline event template, retrieving existing events, and creating an event using the template with their details in a structured format.
+This example demonstrates how to create a timeline event template, retrieving existing events, and creating an event using the template with their details in a structured format.
 
 ## Prerequisites
 
