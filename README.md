@@ -22,7 +22,7 @@ If you don't have a HubSpot Developer account you can sign up to a free account 
 
 If you have an account already, go to the [HubSpot developer portal](https://app.hubspot.com/)
 
-### Step 2 : Create a developer test account
+### Step 2: Create a developer test account (Optional)
 
 Within app developer accounts, you can create [developer test accounts](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) to test apps and integrations without affecting any real HubSpot data.
 
