@@ -136,8 +136,8 @@ To use the `HubSpot CRM Timelines` in your Ballerina application, update the `.b
 Import the `hubspot.crm.extensions.timelines` module and `oauth2` module.
 
 ```ballerina
-import ballerinax/hubspot.crm.extensions.timelines as hstimeline;
 import ballerina/oauth2;
+import ballerinax/hubspot.crm.extensions.timelines as hstimeline;
 ```
 
 ### Step 2: Instantiate a new connector
