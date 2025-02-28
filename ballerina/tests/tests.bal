@@ -37,7 +37,7 @@ string globalEventId = "";
 string eventId = "";
 
 isolated function initApiKeyClient() returns Client|error {
-    if isLiveServer{
+    if isLiveServer {
     if hapikey == "" {
         return error("API Key is missing.");
     }
@@ -63,9 +63,9 @@ isolated function initOAuth2Client() returns Client|error {
             return error("OAuth2 credentials are not available");
         }
         OAuth2RefreshTokenGrantConfig oauthConfig = {
-            clientId: clientId,
-            clientSecret: clientSecret,
-            refreshToken: refreshToken,
+            clientId,
+            clientSecret,
+            refreshToken,
             credentialBearer: oauth2:POST_BODY_BEARER
         };
     return check new ({auth: oauthConfig}, serviceUrl);
@@ -127,7 +127,7 @@ function testUpdateEventTemplate() returns error? {
     lock {  
         eventTemplateId = globalEventTemplateId; 
     }
-    TimelineEventTemplateUpdateRequest payload ={
+    TimelineEventTemplateUpdateRequest payload = {
         detailTemplate: "Registration occurred at {{#formatDate timestamp}}{{/formatDate}}\n\n#### Questions\n{{#each extraData.questions}}\n  **{{question}}**: {{answer}}\n{{/each}}\n\nEDIT",
         name: "PetSpot Registration",
         tokens: [
