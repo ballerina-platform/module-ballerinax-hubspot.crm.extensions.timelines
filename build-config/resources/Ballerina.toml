@@ -5,8 +5,7 @@ name = "hubspot.crm.extensions.timelines"
 version = "@toml.version@"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = [] # TODO: Add keywords
-# icon = "icon.png" # TODO: Add icon
+keywords = ["hubspot", "crm", "timelines", "events"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines"
 
 [build-options]
