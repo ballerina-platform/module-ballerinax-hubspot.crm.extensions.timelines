@@ -59,7 +59,7 @@ isolated function initApiKeyClient() returns Client|error {
 
 isolated function initOAuth2Client() returns Client|error {
     if isLiveServer {
-        if (clientId == "" || clientSecret == "" || refreshToken == "") {
+        if clientId == "" || clientSecret == "" || refreshToken == "" {
             return error("OAuth2 credentials are not available");
         }
         OAuth2RefreshTokenGrantConfig oauthConfig = {
