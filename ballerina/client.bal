@@ -29,63 +29,81 @@ public isolated client class Client {
     # + serviceUrl - URL of the target service 
     # + return - An error if connector initialization failed 
     public isolated function init(ConnectionConfig config, string serviceUrl = "https://api.hubapi.com/integrators/timeline/v3") returns error? {
-        http:ClientConfiguration httpClientConfig = {httpVersion: config.httpVersion, timeout: config.timeout, forwarded: config.forwarded, poolConfig: config.poolConfig, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, validation: config.validation};
-        do {
-            if config.http1Settings is ClientHttp1Settings {
-                ClientHttp1Settings settings = check config.http1Settings.ensureType(ClientHttp1Settings);
-                httpClientConfig.http1Settings = {...settings};
-            }
-            if config.http2Settings is http:ClientHttp2Settings {
-                httpClientConfig.http2Settings = check config.http2Settings.ensureType(http:ClientHttp2Settings);
-            }
-            if config.cache is http:CacheConfig {
-                httpClientConfig.cache = check config.cache.ensureType(http:CacheConfig);
-            }
-            if config.responseLimits is http:ResponseLimitConfigs {
-                httpClientConfig.responseLimits = check config.responseLimits.ensureType(http:ResponseLimitConfigs);
-            }
-            if config.secureSocket is http:ClientSecureSocket {
-                httpClientConfig.secureSocket = check config.secureSocket.ensureType(http:ClientSecureSocket);
-            }
-            if config.proxy is http:ProxyConfig {
-                httpClientConfig.proxy = check config.proxy.ensureType(http:ProxyConfig);
-            }
-        }
+        http:ClientConfiguration httpClientConfig = {httpVersion: config.httpVersion, http1Settings: config.http1Settings, http2Settings: config.http2Settings, timeout: config.timeout, forwarded: config.forwarded, followRedirects: config.followRedirects, poolConfig: config.poolConfig, cache: config.cache, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, cookieConfig: config.cookieConfig, responseLimits: config.responseLimits, secureSocket: config.secureSocket, proxy: config.proxy, socketConfig: config.socketConfig, validation: config.validation, laxDataBinding: config.laxDataBinding};
         if config.auth is ApiKeysConfig {
             self.apiKeyConfig = (<ApiKeysConfig>config.auth).cloneReadOnly();
         } else {
             httpClientConfig.auth = <http:BearerTokenConfig|OAuth2RefreshTokenGrantConfig>config.auth;
             self.apiKeyConfig = ();
         }
-        http:Client httpEp = check new (serviceUrl, httpClientConfig);
-        self.clientEp = httpEp;
-        return;
+        self.clientEp = check new (serviceUrl, httpClientConfig);
     }
 
-    # Deletes an event template for the app
+    # Gets the detailTemplate as rendered
     #
-    # + eventTemplateId - The event template ID.
-    # + appId - The ID of the target app.
+    # + eventTemplateId - The event template ID
+    # + eventId - The event ID
     # + headers - Headers to be sent with the request 
-    # + return - No content 
-    resource isolated function delete [int:Signed32 appId]/event\-templates/[string eventTemplateId](map<string|string[]> headers = {}) returns http:Response|error {
-        string resourcePath = string `/${getEncodedUri(appId)}/event-templates/${getEncodedUri(eventTemplateId)}`;
+    # + return - successful operation 
+    resource isolated function get events/[string eventTemplateId]/[string eventId]/detail(map<string|string[]> headers = {}) returns EventDetail|error {
+        string resourcePath = string `/events/${getEncodedUri(eventTemplateId)}/${getEncodedUri(eventId)}/detail`;
+        map<anydata> headerValues = {...headers};
+        if self.apiKeyConfig is ApiKeysConfig {
+            headerValues["private-app"] = self.apiKeyConfig?.privateApp;
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.privateAppLegacy;
+        }
+        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
+        return self.clientEp->get(resourcePath, httpHeaders);
+    }
+
+    # Create a single event
+    #
+    # + headers - Headers to be sent with the request 
+    # + payload - The timeline event definition 
+    # + return - successful operation 
+    resource isolated function post events(TimelineEvent payload, map<string|string[]> headers = {}) returns TimelineEventResponse|error {
+        string resourcePath = string `/events`;
+        map<anydata> headerValues = {...headers};
+        if self.apiKeyConfig is ApiKeysConfig {
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.privateAppLegacy;
+            headerValues["private-app"] = self.apiKeyConfig?.privateApp;
+        }
+        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
+        http:Request request = new;
+        json jsonBody = payload.toJson();
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, httpHeaders);
+    }
+
+    # Updates an existing token on an event template
+    #
+    # + eventTemplateId - The event template ID
+    # + tokenName - The token name
+    # + appId - The ID of the target app
+    # + headers - Headers to be sent with the request 
+    # + payload - The updated token definition 
+    # + return - successful operation 
+    resource isolated function put [int:Signed32 appId]/event\-templates/[string eventTemplateId]/tokens/[string tokenName](TimelineEventTemplateTokenUpdateRequest payload, map<string|string[]> headers = {}) returns TimelineEventTemplateToken|error {
+        string resourcePath = string `/${getEncodedUri(appId)}/event-templates/${getEncodedUri(eventTemplateId)}/tokens/${getEncodedUri(tokenName)}`;
         map<anydata> queryParam = {};
         if self.apiKeyConfig is ApiKeysConfig {
             queryParam["hapikey"] = self.apiKeyConfig?.hapikey;
         }
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
-        return self.clientEp->delete(resourcePath, headers = headers);
+        http:Request request = new;
+        json jsonBody = payload.toJson();
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->put(resourcePath, request, headers);
     }
 
     # Removes a token from the event template
     #
-    # + eventTemplateId - The event template ID.
-    # + tokenName - The token name.
-    # + appId - The ID of the target app.
+    # + eventTemplateId - The event template ID
+    # + tokenName - The token name
+    # + appId - The ID of the target app
     # + headers - Headers to be sent with the request 
     # + return - No content 
-    resource isolated function delete [int:Signed32 appId]/event\-templates/[string eventTemplateId]/tokens/[string tokenName](map<string|string[]> headers = {}) returns http:Response|error {
+    resource isolated function delete [int:Signed32 appId]/event\-templates/[string eventTemplateId]/tokens/[string tokenName](map<string|string[]> headers = {}) returns error? {
         string resourcePath = string `/${getEncodedUri(appId)}/event-templates/${getEncodedUri(eventTemplateId)}/tokens/${getEncodedUri(tokenName)}`;
         map<anydata> queryParam = {};
         if self.apiKeyConfig is ApiKeysConfig {
@@ -95,11 +113,61 @@ public isolated client class Client {
         return self.clientEp->delete(resourcePath, headers = headers);
     }
 
-    # List all event templates for your app
-    # 
-    # + appId - The ID of the target app.
+    # Gets the event
+    #
+    # + eventTemplateId - The event template ID
+    # + eventId - The event ID
     # + headers - Headers to be sent with the request 
     # + return - successful operation 
+    resource isolated function get events/[string eventTemplateId]/[string eventId](map<string|string[]> headers = {}) returns TimelineEventResponse|error {
+        string resourcePath = string `/events/${getEncodedUri(eventTemplateId)}/${getEncodedUri(eventId)}`;
+        map<anydata> headerValues = {...headers};
+        if self.apiKeyConfig is ApiKeysConfig {
+            headerValues["private-app"] = self.apiKeyConfig?.privateApp;
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.privateAppLegacy;
+        }
+        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
+        return self.clientEp->get(resourcePath, httpHeaders);
+    }
+
+    # Creates multiple events
+    #
+    # + headers - Headers to be sent with the request 
+    # + payload - The timeline event definition 
+    # + return - successful operation 
+    resource isolated function post events/batch/create(BatchInputTimelineEvent payload, map<string|string[]> headers = {}) returns BatchResponseTimelineEventResponse|BatchResponseTimelineEventResponseWithErrors|json|error {
+        string resourcePath = string `/events/batch/create`;
+        map<anydata> headerValues = {...headers};
+        if self.apiKeyConfig is ApiKeysConfig {
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.privateAppLegacy;
+            headerValues["private-app"] = self.apiKeyConfig?.privateApp;
+        }
+        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
+        http:Request request = new;
+        json jsonBody = payload.toJson();
+        request.setPayload(jsonBody, "application/json");
+        return self.clientEp->post(resourcePath, request, httpHeaders);
+    }
+
+    # Renders the header or detail as HTML
+    #
+    # + eventTemplateId - The event template ID
+    # + eventId - The event ID
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - successful operation 
+    resource isolated function get events/[string eventTemplateId]/[string eventId]/render(map<string|string[]> headers = {}, *GetEventsEventTemplateIdEventIdRenderGetRenderByIdQueries queries) returns string|error {
+        string resourcePath = string `/events/${getEncodedUri(eventTemplateId)}/${getEncodedUri(eventId)}/render`;
+        map<anydata> headerValues = {...headers};
+        if self.apiKeyConfig is ApiKeysConfig {
+            headerValues["private-app"] = self.apiKeyConfig?.privateApp;
+            headerValues["private-app-legacy"] = self.apiKeyConfig?.privateAppLegacy;
+        }
+        resourcePath = resourcePath + check getPathForQueryParam(queries);
+        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
+        return self.clientEp->get(resourcePath, httpHeaders);
+    }
+
     resource isolated function get [int:Signed32 appId]/event\-templates(map<string|string[]> headers = {}) returns CollectionResponseTimelineEventTemplateNoPaging|error {
         string resourcePath = string `/${getEncodedUri(appId)}/event-templates`;
         map<anydata> queryParam = {};
@@ -110,81 +178,6 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, headers);
     }
 
-    # Gets a specific event template for your app
-    #
-    # + eventTemplateId - The event template ID.
-    # + appId - The ID of the target app.
-    # + headers - Headers to be sent with the request 
-    # + return - successful operation 
-    resource isolated function get [int:Signed32 appId]/event\-templates/[string eventTemplateId](map<string|string[]> headers = {}) returns TimelineEventTemplate|error {
-        string resourcePath = string `/${getEncodedUri(appId)}/event-templates/${getEncodedUri(eventTemplateId)}`;
-        map<anydata> queryParam = {};
-        if self.apiKeyConfig is ApiKeysConfig {
-            queryParam["hapikey"] = self.apiKeyConfig?.hapikey;
-        }
-        resourcePath = resourcePath + check getPathForQueryParam(queryParam);
-        return self.clientEp->get(resourcePath, headers);
-    }
-
-    # Gets the event
-    #
-    # + eventTemplateId - The event template ID.
-    # + eventId - The event ID.
-    # + headers - Headers to be sent with the request 
-    # + return - successful operation 
-    resource isolated function get events/[string eventTemplateId]/[string eventId](map<string|string[]> headers = {}) returns TimelineEventResponse|error {
-        string resourcePath = string `/events/${getEncodedUri(eventTemplateId)}/${getEncodedUri(eventId)}`;
-        map<anydata> headerValues = {...headers};
-        if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
-        }
-        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
-        return self.clientEp->get(resourcePath, httpHeaders);
-    }
-
-    # Gets the detailTemplate as rendered
-    #
-    # + eventTemplateId - The event template ID.
-    # + eventId - The event ID.
-    # + headers - Headers to be sent with the request 
-    # + return - successful operation 
-    resource isolated function get events/[string eventTemplateId]/[string eventId]/detail(map<string|string[]> headers = {}) returns EventDetail|error {
-        string resourcePath = string `/events/${getEncodedUri(eventTemplateId)}/${getEncodedUri(eventId)}/detail`;
-        map<anydata> headerValues = {...headers};
-        if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
-        }
-        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
-        return self.clientEp->get(resourcePath, httpHeaders);
-    }
-
-    # Renders the header or detail as HTML
-    #
-    # + eventTemplateId - The event template ID.
-    # + eventId - The event ID.
-    # + headers - Headers to be sent with the request 
-    # + queries - Queries to be sent with the request 
-    # + return - successful operation 
-    resource isolated function get events/[string eventTemplateId]/[string eventId]/render(map<string|string[]> headers = {}, *GetEventsEventTemplateIdEventIdRenderGetRenderByIdQueries queries) returns string|error {
-        string resourcePath = string `/events/${getEncodedUri(eventTemplateId)}/${getEncodedUri(eventId)}/render`;
-        map<anydata> headerValues = {...headers};
-        if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
-        }
-        resourcePath = resourcePath + check getPathForQueryParam(queries);
-        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
-        return self.clientEp->get(resourcePath, httpHeaders);
-    }
-
-    # Create an event template for your app
-    #
-    # + appId - The ID of the target app.
-    # + headers - Headers to be sent with the request 
-    # + payload - The updated event template definition. 
-    # + return - successful operation 
     resource isolated function post [int:Signed32 appId]/event\-templates(TimelineEventTemplateCreateRequest payload, map<string|string[]> headers = {}) returns TimelineEventTemplate|error {
         string resourcePath = string `/${getEncodedUri(appId)}/event-templates`;
         map<anydata> queryParam = {};
@@ -198,70 +191,28 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, headers);
     }
 
-    # Adds a token to an existing event template
+    # Gets a specific event template for your app
     #
-    # + eventTemplateId - The event template ID.
-    # + appId - The ID of the target app.
+    # + eventTemplateId - The event template ID
+    # + appId - The ID of the target app
     # + headers - Headers to be sent with the request 
-    # + payload - The new token definition. 
     # + return - successful operation 
-    resource isolated function post [int:Signed32 appId]/event\-templates/[string eventTemplateId]/tokens(TimelineEventTemplateToken payload, map<string|string[]> headers = {}) returns TimelineEventTemplateToken|error {
-        string resourcePath = string `/${getEncodedUri(appId)}/event-templates/${getEncodedUri(eventTemplateId)}/tokens`;
+    resource isolated function get [int:Signed32 appId]/event\-templates/[string eventTemplateId](map<string|string[]> headers = {}) returns TimelineEventTemplate|error {
+        string resourcePath = string `/${getEncodedUri(appId)}/event-templates/${getEncodedUri(eventTemplateId)}`;
         map<anydata> queryParam = {};
         if self.apiKeyConfig is ApiKeysConfig {
             queryParam["hapikey"] = self.apiKeyConfig?.hapikey;
         }
         resourcePath = resourcePath + check getPathForQueryParam(queryParam);
-        http:Request request = new;
-        json jsonBody = payload.toJson();
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, headers);
-    }
-
-    # Create a single event
-    #
-    # + headers - Headers to be sent with the request 
-    # + payload - The timeline event definition. 
-    # + return - successful operation 
-    resource isolated function post events(TimelineEvent payload, map<string|string[]> headers = {}) returns TimelineEventResponse|error {
-        string resourcePath = string `/events`;
-        map<anydata> headerValues = {...headers};
-        if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-        }
-        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
-        http:Request request = new;
-        json jsonBody = payload.toJson();
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, httpHeaders);
-    }
-
-    # Creates multiple events
-    #
-    # + headers - Headers to be sent with the request 
-    # + payload - The timeline event definition. 
-    # + return - successful operation 
-    resource isolated function post events/batch/create(BatchInputTimelineEvent payload, map<string|string[]> headers = {}) returns BatchResponseTimelineEventResponse|BatchResponseTimelineEventResponseWithErrors|json|error {
-        string resourcePath = string `/events/batch/create`;
-        map<anydata> headerValues = {...headers};
-        if self.apiKeyConfig is ApiKeysConfig {
-            headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
-            headerValues["private-app"] = self.apiKeyConfig?.private\-app;
-        }
-        map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
-        http:Request request = new;
-        json jsonBody = payload.toJson();
-        request.setPayload(jsonBody, "application/json");
-        return self.clientEp->post(resourcePath, request, httpHeaders);
+        return self.clientEp->get(resourcePath, headers);
     }
 
     # Update an existing event template
     #
-    # + eventTemplateId - The event template ID.
-    # + appId - The ID of the target app.
+    # + eventTemplateId - The event template ID
+    # + appId - The ID of the target app
     # + headers - Headers to be sent with the request 
-    # + payload - The updated event template definition. 
+    # + payload - The updated event template definition 
     # + return - successful operation 
     resource isolated function put [int:Signed32 appId]/event\-templates/[string eventTemplateId](TimelineEventTemplateUpdateRequest payload, map<string|string[]> headers = {}) returns TimelineEventTemplate|error {
         string resourcePath = string `/${getEncodedUri(appId)}/event-templates/${getEncodedUri(eventTemplateId)}`;
@@ -276,16 +227,31 @@ public isolated client class Client {
         return self.clientEp->put(resourcePath, request, headers);
     }
 
-    # Updates an existing token on an event template
+    # Deletes an event template for the app
     #
-    # + eventTemplateId - The event template ID.
-    # + tokenName - The token name.
-    # + appId - The ID of the target app.
+    # + eventTemplateId - The event template ID
+    # + appId - The ID of the target app
     # + headers - Headers to be sent with the request 
-    # + payload - The updated token definition. 
+    # + return - No content 
+    resource isolated function delete [int:Signed32 appId]/event\-templates/[string eventTemplateId](map<string|string[]> headers = {}) returns error? {
+        string resourcePath = string `/${getEncodedUri(appId)}/event-templates/${getEncodedUri(eventTemplateId)}`;
+        map<anydata> queryParam = {};
+        if self.apiKeyConfig is ApiKeysConfig {
+            queryParam["hapikey"] = self.apiKeyConfig?.hapikey;
+        }
+        resourcePath = resourcePath + check getPathForQueryParam(queryParam);
+        return self.clientEp->delete(resourcePath, headers = headers);
+    }
+
+    # Adds a token to an existing event template
+    #
+    # + eventTemplateId - The event template ID
+    # + appId - The ID of the target app
+    # + headers - Headers to be sent with the request 
+    # + payload - The new token definition 
     # + return - successful operation 
-    resource isolated function put [int:Signed32 appId]/event\-templates/[string eventTemplateId]/tokens/[string tokenName](TimelineEventTemplateTokenUpdateRequest payload, map<string|string[]> headers = {}) returns TimelineEventTemplateToken|error {
-        string resourcePath = string `/${getEncodedUri(appId)}/event-templates/${getEncodedUri(eventTemplateId)}/tokens/${getEncodedUri(tokenName)}`;
+    resource isolated function post [int:Signed32 appId]/event\-templates/[string eventTemplateId]/tokens(TimelineEventTemplateToken payload, map<string|string[]> headers = {}) returns TimelineEventTemplateToken|error {
+        string resourcePath = string `/${getEncodedUri(appId)}/event-templates/${getEncodedUri(eventTemplateId)}/tokens`;
         map<anydata> queryParam = {};
         if self.apiKeyConfig is ApiKeysConfig {
             queryParam["hapikey"] = self.apiKeyConfig?.hapikey;
@@ -294,6 +260,6 @@ public isolated client class Client {
         http:Request request = new;
         json jsonBody = payload.toJson();
         request.setPayload(jsonBody, "application/json");
-        return self.clientEp->put(resourcePath, request, headers);
+        return self.clientEp->post(resourcePath, request, headers);
     }
 }
