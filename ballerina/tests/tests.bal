@@ -16,7 +16,6 @@
 
 import ballerina/oauth2;
 import ballerina/test;
-import ballerina/http;
 import ballerina/lang.runtime;
 
 final string serviceUrl = isLiveServer? "https://api.hubapi.com/integrators/timeline/v3": "http://localhost:9090";
@@ -42,17 +41,17 @@ isolated function initApiKeyClient() returns Client|error {
         return error("API Key is missing.");
     }
     ApiKeysConfig apiKeyConfig = {
-        hapikey: hapikey,
-        private\-app: "",
-        private\-app\-legacy: ""
+        hapikey,
+        privateApp: "",
+        privateAppLegacy: ""
     };
     return check new ({auth: apiKeyConfig}, serviceUrl);
     } 
     return check new ({
         auth: {
             hapikey: "abc-def-ghi",
-            private\-app: "",
-            private\-app\-legacy: ""
+            privateApp: "",
+            privateAppLegacy: ""
         }
     }, serviceUrl);
 };
@@ -211,8 +210,8 @@ function testUpdateToken() returns error? {
 }
 function testDeleteToken() returns error? {
     string tokenName = "petType";
-    http:Response response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates/[eventTemplateId]/tokens/[tokenName].delete();
-    test:assertEquals(response.statusCode, 204, msg = "Expected status code to be 204");
+    error? response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates/[eventTemplateId]/tokens/[tokenName].delete();
+    test:assertEquals(response, ());
 };
 
 @test:Config {
@@ -299,6 +298,6 @@ function testPostEvents() returns error? {
     groups: ["live_tests", "mock_tests"], dependsOn: [testUpdateToken]
 }
 function testDeleteEventTemplate() returns error? {
-    http:Response response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates/[eventTemplateId].delete();
-    test:assertEquals(response.statusCode, 204, msg = "Expected status code to be 204");
+    error? response = check hubSpotTimelineApiKey->/[appIdSigned32]/event\-templates/[eventTemplateId].delete();
+    test:assertEquals(response, ());
 };
