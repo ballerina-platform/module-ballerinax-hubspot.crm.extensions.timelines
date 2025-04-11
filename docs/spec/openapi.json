@@ -38,7 +38,7 @@
         "parameters" : [ {
           "name" : "eventTemplateId",
           "in" : "path",
-          "description" : "The event template ID.",
+          "description" : "The event template ID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -48,7 +48,7 @@
         }, {
           "name" : "eventId",
           "in" : "path",
-          "description" : "The event ID.",
+          "description" : "The event ID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -123,7 +123,7 @@
         "operationId" : "post-/events_create",
         "parameters" : [ ],
         "requestBody" : {
-          "description" : "The timeline event definition.",
+          "description" : "The timeline event definition",
           "content" : {
             "application/json" : {
               "schema" : {
@@ -230,7 +230,7 @@
         "parameters" : [ {
           "name" : "eventTemplateId",
           "in" : "path",
-          "description" : "The event template ID.",
+          "description" : "The event template ID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -240,7 +240,7 @@
         }, {
           "name" : "tokenName",
           "in" : "path",
-          "description" : "The token name.",
+          "description" : "The token name",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -250,7 +250,7 @@
         }, {
           "name" : "appId",
           "in" : "path",
-          "description" : "The ID of the target app.",
+          "description" : "The ID of the target app",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -260,7 +260,7 @@
           }
         } ],
         "requestBody" : {
-          "description" : "The updated token definition.",
+          "description" : "The updated token definition",
           "content" : {
             "application/json" : {
               "schema" : {
@@ -321,7 +321,7 @@
         "parameters" : [ {
           "name" : "eventTemplateId",
           "in" : "path",
-          "description" : "The event template ID.",
+          "description" : "The event template ID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -331,7 +331,7 @@
         }, {
           "name" : "tokenName",
           "in" : "path",
-          "description" : "The token name.",
+          "description" : "The token name",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -341,7 +341,7 @@
         }, {
           "name" : "appId",
           "in" : "path",
-          "description" : "The ID of the target app.",
+          "description" : "The ID of the target app",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -380,7 +380,7 @@
         "parameters" : [ {
           "name" : "eventTemplateId",
           "in" : "path",
-          "description" : "The event template ID.",
+          "description" : "The event template ID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -390,7 +390,7 @@
         }, {
           "name" : "eventId",
           "in" : "path",
-          "description" : "The event ID.",
+          "description" : "The event ID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -465,7 +465,7 @@
         "operationId" : "post-/events/batch/create_createBatch",
         "parameters" : [ ],
         "requestBody" : {
-          "description" : "The timeline event definition.",
+          "description" : "The timeline event definition",
           "content" : {
             "application/json" : {
               "schema" : {
@@ -622,7 +622,7 @@
         "parameters" : [ {
           "name" : "eventTemplateId",
           "in" : "path",
-          "description" : "The event template ID.",
+          "description" : "The event template ID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -632,7 +632,7 @@
         }, {
           "name" : "eventId",
           "in" : "path",
-          "description" : "The event ID.",
+          "description" : "The event ID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -642,7 +642,7 @@
         }, {
           "name" : "detail",
           "in" : "query",
-          "description" : "Set to 'true', we want to render the `detailTemplate` instead of the `headerTemplate`.",
+          "description" : "Set to 'true', we want to render the `detailTemplate` instead of the `headerTemplate`",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -718,7 +718,7 @@
         "parameters" : [ {
           "name" : "appId",
           "in" : "path",
-          "description" : "The ID of the target app.",
+          "description" : "The ID of the target app",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -832,7 +832,7 @@
         "parameters" : [ {
           "name" : "appId",
           "in" : "path",
-          "description" : "The ID of the target app.",
+          "description" : "The ID of the target app",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -842,7 +842,7 @@
           }
         } ],
         "requestBody" : {
-          "description" : "The new event template definition.",
+          "description" : "The new event template definition",
           "content" : {
             "application/json" : {
               "schema" : {
@@ -931,7 +931,7 @@
         "parameters" : [ {
           "name" : "eventTemplateId",
           "in" : "path",
-          "description" : "The event template ID.",
+          "description" : "The event template ID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -941,7 +941,7 @@
         }, {
           "name" : "appId",
           "in" : "path",
-          "description" : "The ID of the target app.",
+          "description" : "The ID of the target app",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -1030,7 +1030,7 @@
         "parameters" : [ {
           "name" : "eventTemplateId",
           "in" : "path",
-          "description" : "The event template ID.",
+          "description" : "The event template ID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -1040,7 +1040,7 @@
         }, {
           "name" : "appId",
           "in" : "path",
-          "description" : "The ID of the target app.",
+          "description" : "The ID of the target app",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -1050,7 +1050,7 @@
           }
         } ],
         "requestBody" : {
-          "description" : "The updated event template definition.",
+          "description" : "The updated event template definition",
           "content" : {
             "application/json" : {
               "schema" : {
@@ -1141,7 +1141,7 @@
         "parameters" : [ {
           "name" : "eventTemplateId",
           "in" : "path",
-          "description" : "The event template ID.",
+          "description" : "The event template ID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -1151,7 +1151,7 @@
         }, {
           "name" : "appId",
           "in" : "path",
-          "description" : "The ID of the target app.",
+          "description" : "The ID of the target app",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -1190,7 +1190,7 @@
         "parameters" : [ {
           "name" : "eventTemplateId",
           "in" : "path",
-          "description" : "The event template ID.",
+          "description" : "The event template ID",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -1200,7 +1200,7 @@
         }, {
           "name" : "appId",
           "in" : "path",
-          "description" : "The ID of the target app.",
+          "description" : "The ID of the target app",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -1210,7 +1210,7 @@
           }
         } ],
         "requestBody" : {
-          "description" : "The new token definition.",
+          "description" : "The new token definition",
           "content" : {
             "application/json" : {
               "schema" : {
@@ -1270,13 +1270,13 @@
         "properties" : {
           "eventTemplateId" : {
             "type" : "string",
-            "description" : "The event template ID.",
+            "description" : "The event template ID",
             "example" : "1001298"
           },
           "extraData" : {
             "type" : "object",
             "properties" : { },
-            "description" : "Additional event-specific data that can be interpreted by the template's markdown.",
+            "description" : "Additional event-specific data that can be interpreted by the template's markdown",
             "example" : {
               "questions" : [ {
                 "answer" : "Bark!",
@@ -1292,14 +1292,14 @@
           },
           "domain" : {
             "type" : "string",
-            "description" : "The event domain (often paired with utk)."
+            "description" : "The event domain (often paired with utk)"
           },
           "tokens" : {
             "type" : "object",
             "additionalProperties" : {
               "type" : "string"
             },
-            "description" : "A collection of token keys and values associated with the template tokens.",
+            "description" : "A collection of token keys and values associated with the template tokens",
             "example" : {
               "petAge" : 3,
               "petName" : "Art3mis",
@@ -1308,28 +1308,28 @@
           },
           "id" : {
             "type" : "string",
-            "description" : "Identifier for the event. This is optional, and we recommend you do not pass this in. We will create one for you if you omit this. You can also use `{{uuid}}` anywhere in the ID to generate a unique string, guaranteeing uniqueness."
+            "description" : "Identifier for the event. This is optional, and we recommend you do not pass this in. We will create one for you if you omit this. You can also use `{{uuid}}` anywhere in the ID to generate a unique string, guaranteeing uniqueness"
           },
           "utk" : {
             "type" : "string",
-            "description" : "Use the `utk` parameter to associate an event with a contact by `usertoken`. This is recommended if you don't know a user's email, but have an identifying user token in your cookie."
+            "description" : "Use the `utk` parameter to associate an event with a contact by `usertoken`. This is recommended if you don't know a user's email, but have an identifying user token in your cookie"
           },
           "email" : {
             "type" : "string",
-            "description" : "The email address used for contact-specific events. This can be used to identify existing contacts, create new ones, or change the email for an existing contact (if paired with the `objectId`).",
+            "description" : "The email address used for contact-specific events. This can be used to identify existing contacts, create new ones, or change the email for an existing contact (if paired with the `objectId`)",
             "example" : "art3mis-pup@petspot.com"
           },
           "objectId" : {
             "type" : "string",
-            "description" : "The CRM object identifier. This is required for every event other than contacts (where utk or email can be used)."
+            "description" : "The CRM object identifier. This is required for every event other than contacts (where utk or email can be used)"
           },
           "timestamp" : {
             "type" : "string",
-            "description" : "The time the event occurred. If not passed in, the curren time will be assumed. This is used to determine where an event is shown on a CRM object's timeline.",
+            "description" : "The time the event occurred. If not passed in, the curren time will be assumed. This is used to determine where an event is shown on a CRM object's timeline",
             "format" : "datetime"
           }
         },
-        "description" : "The state of the timeline event.",
+        "description" : "The state of the timeline event",
         "example" : {
           "eventTemplateId" : "1001298",
           "email" : "art3mis-pup@petspot.com",
@@ -1362,28 +1362,28 @@
         "properties" : {
           "linkLabel" : {
             "type" : "string",
-            "description" : "The text displaying the link that will display the iframe.",
+            "description" : "The text displaying the link that will display the iframe",
             "example" : "View Art3mis"
           },
           "headerLabel" : {
             "type" : "string",
-            "description" : "The label of the modal window that displays the iframe contents.",
+            "description" : "The label of the modal window that displays the iframe contents",
             "example" : "Art3mis dog"
           },
           "width" : {
             "type" : "integer",
-            "description" : "The width of the modal window in pixels.",
+            "description" : "The width of the modal window in pixels",
             "format" : "int32",
             "example" : 600
           },
           "url" : {
             "type" : "string",
-            "description" : "The URI of the iframe contents.",
+            "description" : "The URI of the iframe contents",
             "example" : "https://my.petspot.com/pets/Art3mis"
           },
           "height" : {
             "type" : "integer",
-            "description" : "The height of the modal window in pixels.",
+            "description" : "The height of the modal window in pixels",
             "format" : "int32",
             "example" : 400
           }
@@ -1510,11 +1510,11 @@
         "properties" : {
           "details" : {
             "type" : "string",
-            "description" : "The details Markdown rendered as HTML.",
+            "description" : "The details Markdown rendered as HTML",
             "example" : "<p>Registration occurred at Jan 30, 2020, 1:13:25 PM</p><h4>Questions</h4><p><strong>Who&#x27;s a good kitty?</strong>: Purr...</p><p><strong>Will you stop playing with that?</strong>: Meow!</p><p>EDIT</p>"
           }
         },
-        "description" : "The details Markdown rendered as HTML.",
+        "description" : "The details Markdown rendered as HTML",
         "example" : {
           "details" : "<p>Registration occurred at Jan 30, 2020, 1:13:25 PM</p><h4>Questions</h4><p><strong>Who&#x27;s a good kitty?</strong>: Purr...</p><p><strong>Will you stop playing with that?</strong>: Meow!</p><p>EDIT</p>"
         }
@@ -1525,17 +1525,17 @@
         "properties" : {
           "detailTemplate" : {
             "type" : "string",
-            "description" : "This uses Markdown syntax with Handlebars and event-specific data to render HTML on a timeline when you expand the details.",
+            "description" : "This uses Markdown syntax with Handlebars and event-specific data to render HTML on a timeline when you expand the details",
             "example" : "Registration occurred at {{#formatDate timestamp}}{{/formatDate}}\n\n#### Questions\n{{#each extraData.questions}}\n  **{{question}}**: {{answer}}\n{{/each}}"
           },
           "name" : {
             "type" : "string",
-            "description" : "The template name.",
+            "description" : "The template name",
             "example" : "PetSpot Registration"
           },
           "tokens" : {
             "type" : "array",
-            "description" : "A collection of tokens that can be used as custom properties on the event and to create fully fledged CRM objects.",
+            "description" : "A collection of tokens that can be used as custom properties on the event and to create fully fledged CRM objects",
             "example" : [ {
               "name" : "petName",
               "type" : "string",
@@ -1568,16 +1568,16 @@
           },
           "headerTemplate" : {
             "type" : "string",
-            "description" : "This uses Markdown syntax with Handlebars and event-specific data to render HTML on a timeline as a header.",
+            "description" : "This uses Markdown syntax with Handlebars and event-specific data to render HTML on a timeline as a header",
             "example" : "Registered for [{{petName}}](https://my.petspot.com/pets/{{petName}})"
           },
           "objectType" : {
             "type" : "string",
-            "description" : "The type of CRM object this template is for. [Contacts, companies, tickets, and deals] are supported.",
+            "description" : "The type of CRM object this template is for. [Contacts, companies, tickets, and deals] are supported",
             "example" : "contacts"
           }
         },
-        "description" : "State of the template definition being created.",
+        "description" : "State of the template definition being created",
         "example" : {
           "name" : "PetSpot Registration",
           "objectType" : "contacts",
@@ -1617,17 +1617,17 @@
         "properties" : {
           "detailTemplate" : {
             "type" : "string",
-            "description" : "This uses Markdown syntax with Handlebars and event-specific data to render HTML on a timeline when you expand the details.",
+            "description" : "This uses Markdown syntax with Handlebars and event-specific data to render HTML on a timeline when you expand the details",
             "example" : "Registration occurred at {{#formatDate timestamp}}{{/formatDate}}\n\n#### Questions\n{{#each extraData.questions}}\n  **{{question}}**: {{answer}}\n{{/each}}\n\nEDIT"
           },
           "name" : {
             "type" : "string",
-            "description" : "The template name.",
+            "description" : "The template name",
             "example" : "PetSpot Registration"
           },
           "tokens" : {
             "type" : "array",
-            "description" : "A collection of tokens that can be used as custom properties on the event and to create fully fledged CRM objects.",
+            "description" : "A collection of tokens that can be used as custom properties on the event and to create fully fledged CRM objects",
             "example" : [ {
               "name" : "petName",
               "type" : "string",
@@ -1664,16 +1664,16 @@
           },
           "id" : {
             "type" : "string",
-            "description" : "The template ID.",
+            "description" : "The template ID",
             "example" : "1001298"
           },
           "headerTemplate" : {
             "type" : "string",
-            "description" : "This uses Markdown syntax with Handlebars and event-specific data to render HTML on a timeline as a header.",
+            "description" : "This uses Markdown syntax with Handlebars and event-specific data to render HTML on a timeline as a header",
             "example" : "Registered for [{{petName}}](https://my.petspot.com/pets/{{petName}})"
           }
         },
-        "description" : "State of the template definition being updated.",
+        "description" : "State of the template definition being updated",
         "example" : {
           "id" : "1001298",
           "name" : "PetSpot Registration",
@@ -1737,7 +1737,7 @@
           },
           "in" : {
             "type" : "string",
-            "description" : "The name of the field or parameter in which the error was found."
+            "description" : "The name of the field or parameter in which the error was found"
           },
           "context" : {
             "type" : "object",
@@ -1764,18 +1764,18 @@
         "properties" : {
           "completedAt" : {
             "type" : "string",
-            "description" : "The time the request was completed.",
+            "description" : "The time the request was completed",
             "format" : "datetime",
             "example" : "2020-01-30T18:13:26.227+00:00"
           },
           "requestedAt" : {
             "type" : "string",
-            "description" : "The time the request occurred.",
+            "description" : "The time the request occurred",
             "format" : "datetime"
           },
           "startedAt" : {
             "type" : "string",
-            "description" : "The time the request began processing.",
+            "description" : "The time the request began processing",
             "format" : "datetime",
             "example" : "2020-01-30T18:13:24.974+00:00"
           },
@@ -1787,7 +1787,7 @@
           },
           "results" : {
             "type" : "array",
-            "description" : "Successfully created events.",
+            "description" : "Successfully created events",
             "example" : [ {
               "id" : "petspot:1001298:art3mis-pup@petspot.com-6edaa73d-d734-404d-908f-74774d58ac2b",
               "email" : "art3mis-pup@petspot.com",
@@ -1851,12 +1851,12 @@
           },
           "status" : {
             "type" : "string",
-            "description" : "The status of the batch response. Should always be COMPLETED if processed.",
+            "description" : "The status of the batch response. Should always be COMPLETED if processed",
             "example" : "COMPLETE",
             "enum" : [ "PENDING", "PROCESSING", "CANCELED", "COMPLETE" ]
           }
         },
-        "description" : "The state of the batch event request.",
+        "description" : "The state of the batch event request",
         "example" : {
           "results" : [ {
             "objectType" : "contacts",
@@ -1926,7 +1926,7 @@
         "properties" : {
           "inputs" : {
             "type" : "array",
-            "description" : "A collection of timeline events we want to create.",
+            "description" : "A collection of timeline events we want to create",
             "example" : [ {
               "email" : "art3mis-pup@petspot.com",
               "tokens" : {
@@ -1981,7 +1981,7 @@
             }
           }
         },
-        "description" : "Used to create timeline events in batches.",
+        "description" : "Used to create timeline events in batches",
         "example" : {
           "inputs" : [ {
             "eventTemplateId" : "1001298",
@@ -2040,45 +2040,44 @@
         "properties" : {
           "createdAt" : {
             "type" : "string",
-            "description" : "The date and time that the Event Template was created, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020.",
+            "description" : "The date and time that the Event Template was created, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020",
             "format" : "datetime",
             "nullable" : true
-
           },
           "detailTemplate" : {
             "type" : "string",
-            "description" : "This uses Markdown syntax with Handlebars and event-specific data to render HTML on a timeline when you expand the details."
+            "description" : "This uses Markdown syntax with Handlebars and event-specific data to render HTML on a timeline when you expand the details"
           },
           "name" : {
             "type" : "string",
-            "description" : "The template name."
+            "description" : "The template name"
           },
           "tokens" : {
             "type" : "array",
-            "description" : "A collection of tokens that can be used as custom properties on the event and to create fully fledged CRM objects.",
+            "description" : "A collection of tokens that can be used as custom properties on the event and to create fully fledged CRM objects",
             "items" : {
               "$ref" : "#/components/schemas/TimelineEventTemplateToken"
             }
           },
           "id" : {
             "type" : "string",
-            "description" : "The template ID."
+            "description" : "The template ID"
           },
           "headerTemplate" : {
             "type" : "string",
-            "description" : "This uses Markdown syntax with Handlebars and event-specific data to render HTML on a timeline as a header."
+            "description" : "This uses Markdown syntax with Handlebars and event-specific data to render HTML on a timeline as a header"
           },
           "objectType" : {
             "type" : "string",
-            "description" : "The type of CRM object this template is for. [Contacts, companies, tickets, and deals] are supported."
+            "description" : "The type of CRM object this template is for. [Contacts, companies, tickets, and deals] are supported"
           },
           "updatedAt" : {
             "type" : "string",
-            "description" : "The date and time that the Event Template was last updated, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020.",
+            "description" : "The date and time that the Event Template was last updated, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020",
             "format" : "datetime"
           }
         },
-        "description" : "The current state of the template definition."
+        "description" : "The current state of the template definition"
       },
       "TimelineEventTemplateTokenOption" : {
         "required" : [ "label", "value" ],
@@ -2098,13 +2097,13 @@
         "properties" : {
           "createdAt" : {
             "type" : "string",
-            "description" : "The date and time that the Event Template Token was created, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020.",
+            "description" : "The date and time that the Event Template Token was created, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020",
             "format" : "datetime",
             "example" : "2020-02-12T20:58:26.000+00:00"
           },
           "options" : {
             "type" : "array",
-            "description" : "If type is `enumeration`, we should have a list of options to choose from.",
+            "description" : "If type is `enumeration`, we should have a list of options to choose from",
             "example" : [ {
               "label" : "Dog",
               "value" : "dog"
@@ -2118,34 +2117,34 @@
           },
           "name" : {
             "type" : "string",
-            "description" : "The name of the token referenced in the templates. This must be unique for the specific template. It may only contain alphanumeric characters, periods, dashes, or underscores (. - _).",
+            "description" : "The name of the token referenced in the templates. This must be unique for the specific template. It may only contain alphanumeric characters, periods, dashes, or underscores (. - _)",
             "example" : "petType"
           },
           "label" : {
             "type" : "string",
-            "description" : "Used for list segmentation and reporting.",
+            "description" : "Used for list segmentation and reporting",
             "example" : "Pet Type"
           },
           "objectPropertyName" : {
             "type" : "string",
-            "description" : "The name of the CRM object property. This will populate the CRM object property associated with the event. With enough of these, you can fully build CRM objects via the Timeline API.",
-            "example" : "customPropertyPetType",
-            "nullable" : true
+            "description" : "The name of the CRM object property. This will populate the CRM object property associated with the event. With enough of these, you can fully build CRM objects via the Timeline API",
+            "nullable" : true,
+            "example" : "customPropertyPetType"
           },
           "type" : {
             "type" : "string",
-            "description" : "The data type of the token. You can currently choose from [string, number, date, enumeration].",
+            "description" : "The data type of the token. You can currently choose from [string, number, date, enumeration]",
             "example" : "enumeration",
             "enum" : [ "date", "enumeration", "number", "string" ]
           },
           "updatedAt" : {
             "type" : "string",
-            "description" : "The date and time that the Event Template Token was last updated, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020.",
+            "description" : "The date and time that the Event Template Token was last updated, as an ISO 8601 timestamp. Will be null if the template was created before Feb 18th, 2020",
             "format" : "datetime",
             "example" : "2020-02-12T20:58:26.000+00:00"
           }
         },
-        "description" : "State of the token definition.",
+        "description" : "State of the token definition",
         "example" : {
           "name" : "petType",
           "label" : "Pet Type",
@@ -2168,19 +2167,18 @@
         "properties" : {
           "eventTemplateId" : {
             "type" : "string",
-            "description" : "The event template ID.",
+            "description" : "The event template ID",
             "example" : "1001298"
-
           },
           "createdAt" : {
             "type" : "string",
             "format" : "datetime",
-            "nullable": true
+            "nullable" : true
           },
           "extraData" : {
             "type" : "object",
             "properties" : { },
-            "description" : "Additional event-specific data that can be interpreted by the template's markdown.",
+            "description" : "Additional event-specific data that can be interpreted by the template's markdown",
             "example" : {
               "questions" : [ {
                 "answer" : "Bark!",
@@ -2196,14 +2194,14 @@
           },
           "domain" : {
             "type" : "string",
-            "description" : "The event domain (often paired with utk)."
+            "description" : "The event domain (often paired with utk)"
           },
           "tokens" : {
             "type" : "object",
             "additionalProperties" : {
               "type" : "string"
             },
-            "description" : "A collection of token keys and values associated with the template tokens.",
+            "description" : "A collection of token keys and values associated with the template tokens",
             "example" : {
               "petAge" : "3",
               "petName" : "Art3mis",
@@ -2212,36 +2210,36 @@
           },
           "id" : {
             "type" : "string",
-            "description" : "Identifier for the event. This should be unique to the app and event template. If you use the same ID for different CRM objects, the last to be processed will win and the first will not have a record. You can also use `{{uuid}}` anywhere in the ID to generate a unique string, guaranteeing uniqueness.",
+            "description" : "Identifier for the event. This should be unique to the app and event template. If you use the same ID for different CRM objects, the last to be processed will win and the first will not have a record. You can also use `{{uuid}}` anywhere in the ID to generate a unique string, guaranteeing uniqueness",
             "example" : "petspot:1001298:art3mis-pup@petspot.com-004-invalid"
           },
           "utk" : {
             "type" : "string",
-            "description" : "Use the `utk` parameter to associate an event with a contact by `usertoken`. This is recommended if you don't know a user's email, but have an identifying user token in your cookie."
+            "description" : "Use the `utk` parameter to associate an event with a contact by `usertoken`. This is recommended if you don't know a user's email, but have an identifying user token in your cookie"
           },
           "email" : {
             "type" : "string",
-            "description" : "The email address used for contact-specific events. This can be used to identify existing contacts, create new ones, or change the email for an existing contact (if paired with the `objectId`).",
+            "description" : "The email address used for contact-specific events. This can be used to identify existing contacts, create new ones, or change the email for an existing contact (if paired with the `objectId`)",
             "example" : "art3mis-pup@petspot.com"
           },
           "objectId" : {
             "type" : "string",
-            "description" : "The CRM object identifier. This is required for every event other than contacts (where utk or email can be used).",
+            "description" : "The CRM object identifier. This is required for every event other than contacts (where utk or email can be used)",
             "example" : "28001"
           },
           "timestamp" : {
             "type" : "string",
-            "description" : "The time the event occurred. If not passed in, the curren time will be assumed. This is used to determine where an event is shown on a CRM object's timeline.",
+            "description" : "The time the event occurred. If not passed in, the curren time will be assumed. This is used to determine where an event is shown on a CRM object's timeline",
             "format" : "datetime",
             "example" : "2020-01-30T18:37:15.569+00:00"
           },
           "objectType" : {
             "type" : "string",
-            "description" : "The ObjectType associated with the EventTemplate.",
+            "description" : "The ObjectType associated with the EventTemplate",
             "example" : "contacts"
           }
         },
-        "description" : "The current state of the timeline event.",
+        "description" : "The current state of the timeline event",
         "example" : {
           "objectType" : "contacts",
           "id" : "petspot:1001298:art3mis-pup@petspot.com-004-invalid",
@@ -2278,7 +2276,7 @@
         "properties" : {
           "options" : {
             "type" : "array",
-            "description" : "If type is `enumeration`, we should have a list of options to choose from.",
+            "description" : "If type is `enumeration`, we should have a list of options to choose from",
             "example" : [ {
               "label" : "Dog",
               "value" : "dog"
@@ -2295,15 +2293,15 @@
           },
           "label" : {
             "type" : "string",
-            "description" : "Used for list segmentation and reporting.",
+            "description" : "Used for list segmentation and reporting",
             "example" : "petType edit"
           },
           "objectPropertyName" : {
             "type" : "string",
-            "description" : "The name of the CRM object property. This will populate the CRM object property associated with the event. With enough of these, you can fully build CRM objects via the Timeline API."
+            "description" : "The name of the CRM object property. This will populate the CRM object property associated with the event. With enough of these, you can fully build CRM objects via the Timeline API"
           }
         },
-        "description" : "State of the token definition for update requests.",
+        "description" : "State of the token definition for update requests",
         "example" : {
           "label" : "petType edit",
           "options" : [ {
@@ -2420,13 +2418,14 @@
       "private_apps_legacy" : {
         "type" : "apiKey",
         "name" : "private-app-legacy",
-        "in" : "header"
+        "in" : "header",
+        "x-ballerina-name" : "privateAppLegacy"
       },
       "private_apps" : {
         "type" : "apiKey",
         "name" : "private-app",
-        "in" : "header"
-
+        "in" : "header",
+        "x-ballerina-name" : "privateApp"
       }
     }
   },
