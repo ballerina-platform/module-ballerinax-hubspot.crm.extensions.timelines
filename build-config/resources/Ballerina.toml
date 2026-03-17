@@ -5,7 +5,7 @@ name = "hubspot.crm.extensions.timelines"
 version = "@toml.version@"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = ["timelines", "events", "Vendor/HubSpot", "Area/CRM", "Type/Connector"]
+keywords = ["timelines", "events", "Vendor/HubSpot", "Area/CRM & Sales", "Type/Connector"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines"
 
 [build-options]
