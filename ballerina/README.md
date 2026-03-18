@@ -2,7 +2,14 @@
 
 [HubSpot](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform.
 
-The `ballerinax/module-ballerinax-hubspot.crm.extensions.timelines` connector offers APIs to connect and interact with the [ HubSpot CRM Timelines API](https://developers.hubspot.com/docs/reference/api/crm/extensions/timeline), specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview).
+The HubSpot connector offers APIs to connect and interact with the [ HubSpot CRM Timelines API](https://developers.hubspot.com/docs/reference/api/crm/extensions/timeline), specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview).
+
+### Key Features
+
+- Create and manage custom timeline events for CRM objects
+- Define custom event templates with configurable properties
+- Batch operations for timeline event creation
+- Associate timeline events with contacts, deals, and other objects
 
 ## Setup guide
 
