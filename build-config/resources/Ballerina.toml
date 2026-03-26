@@ -7,6 +7,7 @@ license = ["Apache-2.0"]
 authors = ["Ballerina"]
 keywords = ["timelines", "events", "Vendor/HubSpot", "Area/CRM & Sales", "Type/Connector"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.extensions.timelines"
+icon = "icon.png"
 
 [build-options]
 observabilityIncluded = true
