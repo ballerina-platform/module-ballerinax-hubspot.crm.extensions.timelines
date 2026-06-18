@@ -76,7 +76,7 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    # Updates an existing token on an event template
+    # Update an event template token
     #
     # + eventTemplateId - The event template ID
     # + tokenName - The token name
@@ -97,7 +97,7 @@ public isolated client class Client {
         return self.clientEp->put(resourcePath, request, headers);
     }
 
-    # Removes a token from the event template
+    # Remove a token from a template
     #
     # + eventTemplateId - The event template ID
     # + tokenName - The token name
@@ -203,7 +203,7 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, headers);
     }
 
-    # Gets a specific event template for your app
+    # Get an app event template
     #
     # + eventTemplateId - The event template ID
     # + appId - The ID of the target app
@@ -255,7 +255,7 @@ public isolated client class Client {
         return self.clientEp->delete(resourcePath, headers = headers);
     }
 
-    # Adds a token to an existing event template
+    # Add a token to an event template
     #
     # + eventTemplateId - The event template ID
     # + appId - The ID of the target app
