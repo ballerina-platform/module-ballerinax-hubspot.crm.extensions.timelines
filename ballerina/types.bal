@@ -19,7 +19,7 @@
 
 import ballerina/http;
 
-# Defines an iframe modal embedded in a timeline event, including its URL, dimensions, and display labels.
+# Defines an iframe modal embedded in a timeline event, including its URL, dimensions, and display labels
 public type TimelineEventIFrame record {
     # The text displaying the link that will display the iframe
     string linkLabel;
@@ -39,7 +39,7 @@ public type TimelineEvent record {
     string eventTemplateId;
     # Additional event-specific data that can be interpreted by the template's markdown
     record {} extraData?;
-    # Defines an iframe modal embedded in a timeline event, including its URL, dimensions, and display labels.
+    # Defines an iframe modal embedded in a timeline event, including its URL, dimensions, and display labels
     TimelineEventIFrame timelineIFrame?;
     # The event domain (often paired with utk)
     string domain?;
@@ -57,23 +57,23 @@ public type TimelineEvent record {
     string timestamp?;
 };
 
-# Standard error response structure returned when an API request fails.
+# Standard error response structure returned when an API request fails
 public type StandardError record {
-    # Additional subcategory detail for the error.
+    # Additional subcategory detail for the error
     record {} subCategory?;
-    # Key-value map providing contextual details about the error condition.
+    # Key-value map providing contextual details about the error condition
     record {|string[]...;|} context;
-    # Map of related link names to their associated URIs.
+    # Map of related link names to their associated URIs
     record {|string...;|} links;
-    # Unique identifier associated with the error.
+    # Unique identifier associated with the error
     string id?;
-    # The high-level category classifying the error type.
+    # The high-level category classifying the error type
     string category;
-    # Human-readable message describing the error.
+    # Human-readable message describing the error
     string message;
-    # List of detailed error information for the failed request.
+    # List of detailed error information for the failed request
     ErrorDetail[] errors;
-    # The HTTP status associated with the error response.
+    # The HTTP status associated with the error response
     string status;
 };
 
@@ -111,13 +111,13 @@ public type TimelineEventTemplateUpdateRequest record {
     string headerTemplate?;
 };
 
-# A collection of timeline event templates returned without pagination metadata.
+# A collection of timeline event templates returned without pagination metadata
 public type CollectionResponseTimelineEventTemplateNoPaging record {
-    # Array of timeline event templates returned in the response.
+    # Array of timeline event templates returned in the response
     TimelineEventTemplate[] results;
 };
 
-# Granular error detail describing a specific issue within a failed API request.
+# Granular error detail describing a specific issue within a failed API request
 public type ErrorDetail record {
     # A specific category that contains more specific detail about the error
     string subCategory?;
@@ -145,7 +145,7 @@ public type BatchResponseTimelineEventResponse record {
     string requestedAt?;
     # The time the request began processing
     string startedAt;
-    # Map of link names to associated URIs for the batch response.
+    # Map of link names to associated URIs for the batch response
     record {|string...;|} links?;
     # Successfully created events
     TimelineEventResponse[] results;
@@ -159,7 +159,7 @@ public type BatchInputTimelineEvent record {
     TimelineEvent[] inputs;
 };
 
-# Defines a selectable option for an enumeration token in a timeline event template.
+# Defines a selectable option for an enumeration token in a timeline event template
 public type TimelineEventTemplateTokenOption record {
     string label;
     string value;
@@ -214,11 +214,11 @@ public type TimelineEventTemplateToken record {
 public type TimelineEventResponse record {
     # The event template ID
     string eventTemplateId;
-    # Timestamp indicating when the timeline event was created.
+    # Timestamp indicating when the timeline event was created
     string? createdAt?;
     # Additional event-specific data that can be interpreted by the template's markdown
     record {} extraData?;
-    # Defines an iframe modal embedded in a timeline event, including its URL, dimensions, and display labels.
+    # Defines an iframe modal embedded in a timeline event, including its URL, dimensions, and display labels
     TimelineEventIFrame timelineIFrame?;
     # The event domain (often paired with utk)
     string domain?;
@@ -248,17 +248,17 @@ public type TimelineEventTemplateTokenUpdateRequest record {
     string objectPropertyName?;
 };
 
-# Provides API key configurations needed when communicating with a remote HTTP endpoint.
+# Provides API key configurations needed when communicating with a remote HTTP endpoint
 public type ApiKeysConfig record {|
     string hapikey;
     string privateAppLegacy;
     string privateApp;
 |};
 
-# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
+# Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint
 @display {label: "Connection Config"}
 public type ConnectionConfig record {|
-    # Provides Auth configurations needed when communicating with a remote HTTP endpoint.
+    # Provides Auth configurations needed when communicating with a remote HTTP endpoint
     http:BearerTokenConfig|OAuth2RefreshTokenGrantConfig|ApiKeysConfig auth;
     # The HTTP version understood by the client
     http:HttpVersion httpVersion = http:HTTP_2_0;
@@ -295,26 +295,26 @@ public type ConnectionConfig record {|
     # Enables the inbound payload validation functionality which provided by the constraint package. Enabled by default
     boolean validation = true;
     # Enables relaxed data binding on the client side. When enabled, `nil` values are treated as optional, 
-    # and absent fields are handled as `nilable` types. Enabled by default.
+    # and absent fields are handled as `nilable` types. Enabled by default
     boolean laxDataBinding = true;
 |};
 
-# Batch response containing timeline event results, processing status, timestamps, and any errors encountered during the operation.
+# Batch response containing timeline event results, processing status, timestamps, and any errors encountered during the operation
 public type BatchResponseTimelineEventResponseWithErrors record {
-    # Timestamp indicating when the batch operation completed.
+    # Timestamp indicating when the batch operation completed
     string completedAt;
-    # Total number of errors encountered during the batch operation.
+    # Total number of errors encountered during the batch operation
     int:Signed32 numErrors?;
-    # Timestamp indicating when the batch operation was requested.
+    # Timestamp indicating when the batch operation was requested
     string requestedAt?;
-    # Timestamp indicating when the batch operation started processing.
+    # Timestamp indicating when the batch operation started processing
     string startedAt;
-    # Map of relevant links associated with the batch response.
+    # Map of relevant links associated with the batch response
     record {|string...;|} links?;
-    # Array of successfully processed timeline event responses.
+    # Array of successfully processed timeline event responses
     TimelineEventResponse[] results;
-    # Array of standard errors encountered during the batch operation.
+    # Array of standard errors encountered during the batch operation
     StandardError[] errors?;
-    # Current processing status of the batch operation.
+    # Current processing status of the batch operation
     "PENDING"|"PROCESSING"|"CANCELED"|"COMPLETE" status;
 };
