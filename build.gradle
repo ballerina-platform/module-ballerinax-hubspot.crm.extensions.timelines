@@ -57,7 +57,10 @@ allprojects {
 
 def moduleVersion = project.version.replace("-SNAPSHOT", "")
 
-task build {
+if (!tasks.names.contains('build')) {
+    tasks.register('build')
+}
+tasks.named('build') {
     dependsOn(':hubspot.crm.extensions.timelines-ballerina:build')
 }
 
